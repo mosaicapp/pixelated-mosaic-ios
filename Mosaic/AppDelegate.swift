@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Mosaic
-//
-//  Created by Benedikt Terhechte on 11/06/15.
-//  Copyright © 2015 Pixelated. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

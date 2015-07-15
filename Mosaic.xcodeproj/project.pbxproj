@@ -16,6 +16,8 @@
 		4DC7827A1B2A1AF5009290CD /* MosaicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC782791B2A1AF5009290CD /* MosaicUITests.swift */; };
 		8A7E1DD61B56E047003453C5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */; };
 		8A7E1DD71B56E047003453C5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8A7E1DF91B56EB11003453C5 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A7E1DF71B56EB11003453C5 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8A7E1DFA1B56EB11003453C5 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A7E1DF81B56EB11003453C5 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,17 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8A7E1DF21B56EA77003453C5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8A7E1DF91B56EB11003453C5 /* Nimble.framework in CopyFiles */,
+				8A7E1DFA1B56EB11003453C5 /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +77,8 @@
 		4DC782791B2A1AF5009290CD /* MosaicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicUITests.swift; sourceTree = "<group>"; };
 		4DC7827B1B2A1AF5009290CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		8A7E1DF71B56EB11003453C5 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		8A7E1DF81B56EB11003453C5 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +110,8 @@
 		4DC7824D1B2A1AF4009290CD = {
 			isa = PBXGroup;
 			children = (
+				8A7E1DF71B56EB11003453C5 /* Nimble.framework */,
+				8A7E1DF81B56EB11003453C5 /* Quick.framework */,
 				8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */,
 				4DC782581B2A1AF4009290CD /* Mosaic */,
 				4DC7826D1B2A1AF5009290CD /* MosaicTests */,
@@ -173,6 +190,7 @@
 				4DC782661B2A1AF5009290CD /* Sources */,
 				4DC782671B2A1AF5009290CD /* Frameworks */,
 				4DC782681B2A1AF5009290CD /* Resources */,
+				8A7E1DF21B56EA77003453C5 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -469,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
 				INFOPLIST_FILE = MosaicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pixelated-project.MosaicTests";
@@ -481,6 +500,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
 				INFOPLIST_FILE = MosaicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pixelated-project.MosaicTests";
