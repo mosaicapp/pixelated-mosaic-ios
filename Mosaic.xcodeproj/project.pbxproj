@@ -399,6 +399,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Mosaic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pixelated-project.Mosaic";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -410,6 +411,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Mosaic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.pixelated-project.Mosaic";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -483,6 +485,7 @@
 				4DC782801B2A1AF5009290CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4DC782811B2A1AF5009290CD /* Build configuration list for PBXNativeTarget "MosaicTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +494,7 @@
 				4DC782831B2A1AF5009290CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4DC782841B2A1AF5009290CD /* Build configuration list for PBXNativeTarget "MosaicUITests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +503,7 @@
 				4DC782861B2A1AF5009290CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
