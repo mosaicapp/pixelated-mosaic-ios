@@ -14,6 +14,8 @@
 		4DC782641B2A1AF4009290CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC782621B2A1AF4009290CD /* LaunchScreen.storyboard */; };
 		4DC7826F1B2A1AF5009290CD /* MosaicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC7826E1B2A1AF5009290CD /* MosaicTests.swift */; };
 		4DC7827A1B2A1AF5009290CD /* MosaicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC782791B2A1AF5009290CD /* MosaicUITests.swift */; };
+		8A7E1DD61B56E047003453C5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */; };
+		8A7E1DD71B56E047003453C5 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8A7E1DD81B56E047003453C5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8A7E1DD71B56E047003453C5 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4DC782561B2A1AF4009290CD /* Mosaic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mosaic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC782591B2A1AF4009290CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +63,7 @@
 		4DC782751B2A1AF5009290CD /* MosaicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MosaicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC782791B2A1AF5009290CD /* MosaicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MosaicUITests.swift; sourceTree = "<group>"; };
 		4DC7827B1B2A1AF5009290CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A7E1DD61B56E047003453C5 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +95,7 @@
 		4DC7824D1B2A1AF4009290CD = {
 			isa = PBXGroup;
 			children = (
+				8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */,
 				4DC782581B2A1AF4009290CD /* Mosaic */,
 				4DC7826D1B2A1AF5009290CD /* MosaicTests */,
 				4DC782781B2A1AF5009290CD /* MosaicUITests */,
@@ -135,6 +154,8 @@
 				4DC782521B2A1AF4009290CD /* Sources */,
 				4DC782531B2A1AF4009290CD /* Frameworks */,
 				4DC782541B2A1AF4009290CD /* Resources */,
+				8A7E1DD51B56DFE4003453C5 /* ShellScript */,
+				8A7E1DD81B56E047003453C5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -249,6 +270,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A7E1DD51B56DFE4003453C5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4DC782521B2A1AF4009290CD /* Sources */ = {
@@ -398,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
 				INFOPLIST_FILE = Mosaic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -410,6 +449,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS/";
 				INFOPLIST_FILE = Mosaic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
