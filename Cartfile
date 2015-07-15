@@ -1,1 +1,3 @@
 github "Alamofire/Alamofire" "swift-2.0"
+github "Quick/Quick" "swift-2.0"
+github "Quick/Nimble" "swift-2.0"
