@@ -110,12 +110,10 @@
 		4DC7824D1B2A1AF4009290CD = {
 			isa = PBXGroup;
 			children = (
-				8A7E1DF71B56EB11003453C5 /* Nimble.framework */,
-				8A7E1DF81B56EB11003453C5 /* Quick.framework */,
-				8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */,
 				4DC782581B2A1AF4009290CD /* Mosaic */,
 				4DC7826D1B2A1AF5009290CD /* MosaicTests */,
 				4DC782781B2A1AF5009290CD /* MosaicUITests */,
+				A71A82EA1B56F5A700F62B08 /* Frameworks */,
 				4DC782571B2A1AF4009290CD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,10 +133,7 @@
 			children = (
 				4DC782591B2A1AF4009290CD /* AppDelegate.swift */,
 				4DC7825B1B2A1AF4009290CD /* ViewController.swift */,
-				4DC7825D1B2A1AF4009290CD /* Main.storyboard */,
-				4DC782601B2A1AF4009290CD /* Assets.xcassets */,
-				4DC782621B2A1AF4009290CD /* LaunchScreen.storyboard */,
-				4DC782651B2A1AF4009290CD /* Info.plist */,
+				A71A82EB1B56F5BC00F62B08 /* Ressources */,
 			);
 			path = Mosaic;
 			sourceTree = "<group>";
@@ -159,6 +154,27 @@
 				4DC7827B1B2A1AF5009290CD /* Info.plist */,
 			);
 			path = MosaicUITests;
+			sourceTree = "<group>";
+		};
+		A71A82EA1B56F5A700F62B08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A7E1DF71B56EB11003453C5 /* Nimble.framework */,
+				8A7E1DF81B56EB11003453C5 /* Quick.framework */,
+				8A7E1DD31B56DFCA003453C5 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A71A82EB1B56F5BC00F62B08 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				4DC7825D1B2A1AF4009290CD /* Main.storyboard */,
+				4DC782601B2A1AF4009290CD /* Assets.xcassets */,
+				4DC782621B2A1AF4009290CD /* LaunchScreen.storyboard */,
+				4DC782651B2A1AF4009290CD /* Info.plist */,
+			);
+			name = Ressources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +242,7 @@
 		4DC7824E1B2A1AF4009290CD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Pixelated;
 				TargetAttributes = {
