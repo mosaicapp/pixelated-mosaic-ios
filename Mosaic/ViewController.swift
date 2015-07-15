@@ -1,25 +1,14 @@
-//
-//  ViewController.swift
-//  Mosaic
-//
-//  Created by Benedikt Terhechte on 11/06/15.
-//  Copyright © 2015 Pixelated. All rights reserved.
-//
-
 import UIKit
+import Alamofire
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        Alamofire.request(.GET, URLString: "http://localhost:3333/mails?q=tag%3A%22inbox%22&p=1&w=25")
+            .responseJSON(completionHandler: { (request, response, json, error) -> Void in
+                print(json)
+        })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
