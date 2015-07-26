@@ -1,0 +1,15 @@
+{
+    "mails" : [
+        {
+            "textPlainBody": "first",
+            "mailbox": "inbox"
+        },
+        {
+            "textPlainBody": "second",
+            "mailbox": "inbox"
+        }
+    ],
+    "stats" : {
+        "total" : 2
+    }
+}
