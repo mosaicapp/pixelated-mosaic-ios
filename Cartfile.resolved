@@ -1,3 +1,5 @@
-github "Alamofire/Alamofire" "fd71afb3a0af2042b9f05a6b9f29317ad4903703"
-github "Quick/Nimble" "0adbea1f51e6bb489d81463a164df16d8d36d810"
-github "Quick/Quick" "39db56818cf68f8fefd6c3534362890fa337a326"
+github "Alamofire/Alamofire" "4aae4134dc7e9770974d3dfb97892f7dc1e21da2"
+github "thoughtbot/Argo" "93163721c3c67d99b0de1d1458328d1e83e0ca51"
+github "thoughtbot/Curry" "a4c1c730f5189e126968ea6f7326de989efa264f"
+github "Quick/Nimble" "a804949542eb2f299b823ffb36936aec54fe0db6"
+github "Quick/Quick" "e3c802be6c55710b39dba73caab9f234932c2ed7"
