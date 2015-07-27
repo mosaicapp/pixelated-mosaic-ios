@@ -6,10 +6,19 @@ struct MailsResponse {
 }
 
 struct Mail {
+    let header: Header
     let textPlainBody: String
     let mailbox: String
 }
 
 struct Stats {
     let total: Int
+}
+
+struct Header {
+    let from: String?
+    let to: [String]
+    let cc: [String]
+    let bcc: [String]
+    let subject: String
 }

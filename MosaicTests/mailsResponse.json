@@ -1,11 +1,25 @@
 {
     "mails" : [
         {
-            "textPlainBody": "first",
+            "header": {
+                "from": null,
+                "to": ["alice@dev.pixelated-project.org"],
+                "cc": [],
+                "bcc": [],
+                "subject": "Welcome"
+            },
+            "textPlainBody": "First mail",
             "mailbox": "inbox"
         },
         {
-            "textPlainBody": "second",
+            "header": {
+                "from": "alice@dev.pixelated-project.org",
+                "to": ["bob@dev.pixelated-project.org"],
+                "cc": ["eve@dev.pixelated-project.org", "charly@dev.pixelated-project.org"],
+                "bcc": ["alice@dev.pixelated-project.org"],
+                "subject": "Hello"
+            },
+            "textPlainBody": "world",
             "mailbox": "inbox"
         }
     ],
