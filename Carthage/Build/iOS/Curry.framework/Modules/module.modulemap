@@ -1,0 +1,10 @@
+framework module Curry {
+  umbrella header "Curry.h"
+
+  export *
+  module * { export * }
+}
+
+module Curry.Swift {
+    header "Curry-Swift.h"
+}
