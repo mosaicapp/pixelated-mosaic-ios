@@ -1,4 +1,4 @@
-// RequestTests.swift
+// ManagerTests.swift
 //
 // Copyright (c) 2014–2015 Alamofire Software Foundation (http://alamofire.org/)
 //
@@ -30,7 +30,7 @@ class ManagerTestCase: BaseTestCase {
         let manager = Alamofire.Manager()
         manager.startRequestsImmediately = false
 
-        let URL = NSURL(string: "http://httpbin.org/get")!
+        let URL = NSURL(string: "https://httpbin.org/get")!
         let URLRequest = NSURLRequest(URL: URL)
 
         let expectation = expectationWithDescription("\(URL)")
@@ -45,7 +45,7 @@ class ManagerTestCase: BaseTestCase {
             }
             .resume()
 
-        waitForExpectationsWithTimeout(self.defaultTimeout, handler: nil)
+        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
 
         // Then
         XCTAssertNotNil(response, "response should not be nil")
@@ -57,7 +57,7 @@ class ManagerTestCase: BaseTestCase {
         var manager: Manager? = Alamofire.Manager()
         manager?.startRequestsImmediately = false
 
-        let URL = NSURL(string: "http://httpbin.org/get")!
+        let URL = NSURL(string: "https://httpbin.org/get")!
         let URLRequest = NSURLRequest(URL: URL)
 
         // When
@@ -74,7 +74,7 @@ class ManagerTestCase: BaseTestCase {
         var manager: Manager? = Alamofire.Manager()
         manager!.startRequestsImmediately = false
 
-        let URL = NSURL(string: "http://httpbin.org/get")!
+        let URL = NSURL(string: "https://httpbin.org/get")!
         let URLRequest = NSURLRequest(URL: URL)
 
         // When

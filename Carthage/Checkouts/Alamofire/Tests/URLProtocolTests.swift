@@ -68,15 +68,15 @@ class ProxyURLProtocol: NSURLProtocol {
     // MARK: Loading Methods
 
     override func startLoading() {
-        let mutableRequest = self.request.mutableCopy() as! NSMutableURLRequest
+        let mutableRequest = request.URLRequest
         NSURLProtocol.setProperty(true, forKey: PropertyKeys.HandledByForwarderURLProtocol, inRequest: mutableRequest)
 
-        self.activeTask = self.session.dataTaskWithRequest(mutableRequest)
-        self.activeTask?.resume()
+        activeTask = session.dataTaskWithRequest(mutableRequest)
+        activeTask?.resume()
     }
 
     override func stopLoading() {
-        self.activeTask?.cancel()
+        activeTask?.cancel()
     }
 }
 
@@ -87,15 +87,15 @@ extension ProxyURLProtocol: NSURLSessionDelegate {
     // MARK: NSURLSessionDelegate
 
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        self.client?.URLProtocol(self, didLoadData: data)
+        client?.URLProtocol(self, didLoadData: data)
     }
 
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
         if let response = task.response {
-            self.client?.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
+            client?.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
         }
 
-        self.client?.URLProtocolDidFinishLoading(self)
+        client?.URLProtocolDidFinishLoading(self)
     }
 }
 
@@ -108,9 +108,10 @@ class URLProtocolTestCase: BaseTestCase {
     override func setUp() {
         super.setUp()
 
-        let protocolClasses: [AnyClass] = [ProxyURLProtocol.self]
-        Alamofire.Manager.sharedInstance.session.configuration.protocolClasses = protocolClasses
-        Alamofire.Manager.sharedInstance.session.configuration.HTTPAdditionalHeaders = ["Session-Configuration-Header": "foo"]
+        let configuration = Alamofire.Manager.sharedInstance.session.configuration
+
+        configuration.protocolClasses = [ProxyURLProtocol.self]
+        configuration.HTTPAdditionalHeaders = ["Session-Configuration-Header": "foo"]
     }
 
     override func tearDown() {
@@ -123,7 +124,7 @@ class URLProtocolTestCase: BaseTestCase {
 
     func testThatURLProtocolReceivesRequestHeadersAndNotSessionConfigurationHeaders() {
         // Given
-        let URLString = "http://httpbin.org/response-headers"
+        let URLString = "https://httpbin.org/response-headers"
         let URL = NSURL(string: URLString)!
         let parameters = ["URLRequest-Header": "foobar"]
 
@@ -136,30 +137,30 @@ class URLProtocolTestCase: BaseTestCase {
 
         var request: NSURLRequest?
         var response: NSHTTPURLResponse?
-        var string: AnyObject?
+        var data: NSData?
         var error: NSError?
 
         // When
         Alamofire.request(URLRequest)
-            .response { responseRequest, responseResponse, responseString, responseError in
+            .response { responseRequest, responseResponse, responseData, responseError in
                 request = responseRequest
                 response = responseResponse
-                string = responseString
+                data = responseData
                 error = responseError
 
                 expectation.fulfill()
-        }
+            }
 
-        waitForExpectationsWithTimeout(self.defaultTimeout, handler: nil)
+        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
 
         // Then
         XCTAssertNotNil(request, "request should not be nil")
         XCTAssertNotNil(response, "response should not be nil")
-        XCTAssertNotNil(string, "string should not be nil")
+        XCTAssertNotNil(data, "data should not be nil")
         XCTAssertNil(error, "error should be nil")
 
         if let headers = response?.allHeaderFields as? [String: String] {
-            XCTAssertEqual(headers["URLRequest-Header"] ?? "", "foobar", "URLRequest-Header should be foobar")
+            XCTAssertEqual(headers["urlrequest-header"] ?? "", "foobar", "urlrequest-header should be foobar")
             XCTAssertNil(headers["Session-Configuration-Header"], "Session-Configuration-Header should be nil")
         } else {
             XCTFail("headers should not be nil")
