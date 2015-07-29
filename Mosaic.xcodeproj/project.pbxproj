@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		344E516F1B69612E0080DB5D /* MainInboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344E516E1B69612E0080DB5D /* MainInboxController.swift */; };
 		4DC7825A1B2A1AF4009290CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC782591B2A1AF4009290CD /* AppDelegate.swift */; };
 		4DC7825C1B2A1AF4009290CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC7825B1B2A1AF4009290CD /* ViewController.swift */; };
 		4DC7825F1B2A1AF4009290CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC7825D1B2A1AF4009290CD /* Main.storyboard */; };
@@ -72,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		344E516E1B69612E0080DB5D /* MainInboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInboxController.swift; sourceTree = "<group>"; };
 		4DC782561B2A1AF4009290CD /* Mosaic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mosaic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC782591B2A1AF4009290CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DC7825B1B2A1AF4009290CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				4FC65C321B64FA03007CA827 /* Models.swift */,
 				4F6DEC261B5C1E0F0014DB2D /* JsonParseService.swift */,
 				4DC7825B1B2A1AF4009290CD /* ViewController.swift */,
+				344E516E1B69612E0080DB5D /* MainInboxController.swift */,
 				A71A82EB1B56F5BC00F62B08 /* Ressources */,
 			);
 			path = Mosaic;
@@ -368,6 +371,7 @@
 				4DC7825C1B2A1AF4009290CD /* ViewController.swift in Sources */,
 				4FC65C331B64FA03007CA827 /* Models.swift in Sources */,
 				4DC7825A1B2A1AF4009290CD /* AppDelegate.swift in Sources */,
+				344E516F1B69612E0080DB5D /* MainInboxController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
