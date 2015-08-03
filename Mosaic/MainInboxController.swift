@@ -7,11 +7,16 @@ class MainInboxController : UIViewController, UITableViewDataSource, UITableView
     
     let jsonParseService = JsonParseService()
     
+    let dateFormatter = NSDateFormatter()
+    
     var mailsResponse : MailsResponse?
     
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
+        
+        dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+        dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -22,9 +27,10 @@ class MainInboxController : UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCellWithIdentifier("inboxMailCell") as! InboxMailCell
         
         if let response = mailsResponse {
-            cell.subject.text = response.mails[indexPath.row].header.subject
-            cell.body.text = response.mails[indexPath.row].textPlainBody
-            cell.date.text = "01/01/2015"
+            let mail = response.mails[indexPath.row]
+            cell.subject.text = mail.header.subject
+            cell.date.text = dateFormatter.stringFromDate(mail.header.date)
+            cell.body.text = mail.textPlainBody
         }
         
         return cell

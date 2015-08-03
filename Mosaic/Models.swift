@@ -21,4 +21,5 @@ struct Header {
     let cc: [String]
     let bcc: [String]
     let subject: String
+    let date: NSDate
 }

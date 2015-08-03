@@ -53,5 +53,36 @@ extension Header: Decodable {
             <*> json <|| "cc"
             <*> json <|| "bcc"
             <*> json <| "subject"
+            <*> json <| "date"
+    }
+}
+
+private class JsonDateParser {
+    
+    let formatter = NSDateFormatter()
+    
+    init() {
+        formatter.dateFormat = "yyyy-MM-dd'T'HH-mm-ss.Sx"
+    }
+    
+    func parse(string: String) -> NSDate? {
+        return formatter.dateFromString(string)
+    }
+
+}
+
+private let jsonDateParser = JsonDateParser()
+
+extension NSDate: Decodable {
+    public static func decode(json: JSON) -> Decoded<NSDate> {
+        switch json {
+        case .String(let dateString):
+            if let date = jsonDateParser.parse(dateString) {
+                return Decoded.Success(date)
+            }
+            return Decoded.TypeMismatch(dateString)
+        default:
+            return Decoded.TypeMismatch(json.description)
+        }
     }
 }
