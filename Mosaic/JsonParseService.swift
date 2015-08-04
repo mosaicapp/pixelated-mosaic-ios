@@ -57,27 +57,20 @@ extension Header: Decodable {
     }
 }
 
-private class JsonDateParser {
-    
-    let formatter = NSDateFormatter()
-    
-    init() {
-        formatter.dateFormat = "yyyy-MM-dd'T'HH-mm-ss.Sx"
-    }
-    
-    func parse(string: String) -> NSDate? {
-        return formatter.dateFromString(string)
-    }
-
-}
-
-private let jsonDateParser = JsonDateParser()
-
 extension NSDate: Decodable {
+    
+    private static var jsonDateFormatter: NSDateFormatter {
+        get {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH-mm-ss.Sx"
+            return formatter
+        }
+    }
+    
     public static func decode(json: JSON) -> Decoded<NSDate> {
         switch json {
         case .String(let dateString):
-            if let date = jsonDateParser.parse(dateString) {
+            if let date = jsonDateFormatter.dateFromString(dateString) {
                 return Decoded.Success(date)
             }
             return Decoded.TypeMismatch(dateString)
