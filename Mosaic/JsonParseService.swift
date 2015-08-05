@@ -59,13 +59,11 @@ extension Header: Decodable {
 
 extension NSDate: Decodable {
     
-    private static var jsonDateFormatter: NSDateFormatter {
-        get {
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH-mm-ss.Sx"
-            return formatter
-        }
-    }
+    private static let jsonDateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH-mm-ss.Sx"
+        return formatter
+    }()
     
     public static func decode(json: JSON) -> Decoded<NSDate> {
         switch json {
