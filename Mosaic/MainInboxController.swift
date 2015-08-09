@@ -37,15 +37,21 @@ class MainInboxController : UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mailsResponse == nil ? 0 : mailsResponse!.mails.count
+        return mailsResponse?.mails.count ?? 0
     }
     
     private func loadInbox() {
         Alamofire.request(.GET, "http://localhost:3333/mails",
             parameters: ["q": "tag:inbox", "p": 1, "w": 25])
-            .responseJSON(completionHandler: { (request, response, json, error) -> Void in
-                self.mailsResponse = self.jsonParseService.parseMailsResponse(json)
-                self.tableView.reloadData()
+            .responseJSON(completionHandler: { (request, response, result) -> Void in
+                switch result {
+                case .Success(let json):
+                    self.mailsResponse = self.jsonParseService.parseMailsResponse(json)
+                    self.tableView.reloadData()
+                case .Failure(_, _):
+                    // TODO display error message
+                    break;
+                }
             })
     }
 }

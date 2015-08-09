@@ -10,7 +10,6 @@
 		344E516F1B69612E0080DB5D /* MainInboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344E516E1B69612E0080DB5D /* MainInboxController.swift */; };
 		344E51711B6966F30080DB5D /* InboxMailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344E51701B6966F30080DB5D /* InboxMailCell.swift */; };
 		4DC7825A1B2A1AF4009290CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC782591B2A1AF4009290CD /* AppDelegate.swift */; };
-		4DC7825C1B2A1AF4009290CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC7825B1B2A1AF4009290CD /* ViewController.swift */; };
 		4DC7825F1B2A1AF4009290CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC7825D1B2A1AF4009290CD /* Main.storyboard */; };
 		4DC782611B2A1AF4009290CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DC782601B2A1AF4009290CD /* Assets.xcassets */; };
 		4DC782641B2A1AF4009290CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DC782621B2A1AF4009290CD /* LaunchScreen.storyboard */; };
@@ -78,7 +77,6 @@
 		344E51701B6966F30080DB5D /* InboxMailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxMailCell.swift; sourceTree = "<group>"; };
 		4DC782561B2A1AF4009290CD /* Mosaic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mosaic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC782591B2A1AF4009290CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4DC7825B1B2A1AF4009290CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4DC7825E1B2A1AF4009290CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4DC782601B2A1AF4009290CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DC782631B2A1AF4009290CD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 				4DC782591B2A1AF4009290CD /* AppDelegate.swift */,
 				4FC65C321B64FA03007CA827 /* Models.swift */,
 				4F6DEC261B5C1E0F0014DB2D /* JsonParseService.swift */,
-				4DC7825B1B2A1AF4009290CD /* ViewController.swift */,
 				344E516E1B69612E0080DB5D /* MainInboxController.swift */,
 				A71A82EB1B56F5BC00F62B08 /* Ressources */,
 				344E51701B6966F30080DB5D /* InboxMailCell.swift */,
@@ -371,7 +368,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6DEC271B5C1E0F0014DB2D /* JsonParseService.swift in Sources */,
-				4DC7825C1B2A1AF4009290CD /* ViewController.swift in Sources */,
 				4FC65C331B64FA03007CA827 /* Models.swift in Sources */,
 				4DC7825A1B2A1AF4009290CD /* AppDelegate.swift in Sources */,
 				344E516F1B69612E0080DB5D /* MainInboxController.swift in Sources */,
