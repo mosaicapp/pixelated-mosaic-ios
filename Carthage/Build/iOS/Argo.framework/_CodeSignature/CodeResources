@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/Argo-Swift.h</key>
 		<data>
-		77MGpjw8H4BEDpeI3my9K+lg4JE=
+		1pS+j5jt24tthrF5iKA2V8J+32o=
 		</data>
 		<key>Headers/Argo.h</key>
 		<data>
@@ -14,23 +14,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		sAUmkNU1CwKVmZPLVjd/DE7E0IE=
+		d685GkKrfDh8VWplSI5jgzQ2MrA=
 		</data>
 		<key>Modules/Argo.swiftmodule/arm.swiftdoc</key>
 		<data>
-		6pAVQ+plJahxTKWcpsuDRjhzAf0=
+		G40ZKxZeGbDiufsVP/4VgPLgqGY=
 		</data>
 		<key>Modules/Argo.swiftmodule/arm.swiftmodule</key>
 		<data>
-		h6002PMRdN28fziNFhErWlEjvd8=
+		Wy8RzQRIBpisa5CPOYJsm1Us5DI=
 		</data>
 		<key>Modules/Argo.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		gTMYDrrTqAA0ZvC8IRiTa0OsT1g=
+		Fq4/GBaJtuC5ZnCk+gF/L2KS1cY=
 		</data>
 		<key>Modules/Argo.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		HD000/eg/zoMmchqoVw374YBTsE=
+		vdj3TWhQBdpktZr7b9v7pq3fxAg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -41,7 +41,7 @@
 	<dict>
 		<key>Headers/Argo-Swift.h</key>
 		<data>
-		77MGpjw8H4BEDpeI3my9K+lg4JE=
+		1pS+j5jt24tthrF5iKA2V8J+32o=
 		</data>
 		<key>Headers/Argo.h</key>
 		<data>
@@ -49,19 +49,19 @@
 		</data>
 		<key>Modules/Argo.swiftmodule/arm.swiftdoc</key>
 		<data>
-		6pAVQ+plJahxTKWcpsuDRjhzAf0=
+		G40ZKxZeGbDiufsVP/4VgPLgqGY=
 		</data>
 		<key>Modules/Argo.swiftmodule/arm.swiftmodule</key>
 		<data>
-		h6002PMRdN28fziNFhErWlEjvd8=
+		Wy8RzQRIBpisa5CPOYJsm1Us5DI=
 		</data>
 		<key>Modules/Argo.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		gTMYDrrTqAA0ZvC8IRiTa0OsT1g=
+		Fq4/GBaJtuC5ZnCk+gF/L2KS1cY=
 		</data>
 		<key>Modules/Argo.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		HD000/eg/zoMmchqoVw374YBTsE=
+		vdj3TWhQBdpktZr7b9v7pq3fxAg=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
