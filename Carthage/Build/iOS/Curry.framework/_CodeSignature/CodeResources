@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/Curry-Swift.h</key>
 		<data>
-		1pS+j5jt24tthrF5iKA2V8J+32o=
+		7T+96c3qYAPaRl4RYW7+7eYLKp0=
 		</data>
 		<key>Headers/Curry.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		PZT5YptgJjcobk4nL5aaWAxTuF0=
+		z7/rreHusRnZQ2BnELJm3CnI+9k=
 		</data>
 		<key>Modules/Curry.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/Curry.swiftmodule/arm.swiftmodule</key>
 		<data>
-		DGxegG/YZ2sq1VIAhcZJikN8v94=
+		u/J9Oybb8mgv8rQsJzTGnIUCeAQ=
 		</data>
 		<key>Modules/Curry.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/Curry.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		pdBRWjspUBRuZBQId2OxGWE1EVk=
+		gLZXihqsYU9NMheAlTqG6CAabO8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -41,7 +41,7 @@
 	<dict>
 		<key>Headers/Curry-Swift.h</key>
 		<data>
-		1pS+j5jt24tthrF5iKA2V8J+32o=
+		7T+96c3qYAPaRl4RYW7+7eYLKp0=
 		</data>
 		<key>Headers/Curry.h</key>
 		<data>
@@ -53,7 +53,7 @@
 		</data>
 		<key>Modules/Curry.swiftmodule/arm.swiftmodule</key>
 		<data>
-		DGxegG/YZ2sq1VIAhcZJikN8v94=
+		u/J9Oybb8mgv8rQsJzTGnIUCeAQ=
 		</data>
 		<key>Modules/Curry.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -61,7 +61,7 @@
 		</data>
 		<key>Modules/Curry.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		pdBRWjspUBRuZBQId2OxGWE1EVk=
+		gLZXihqsYU9NMheAlTqG6CAabO8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

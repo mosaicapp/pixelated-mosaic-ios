@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/DSL.h</key>
 		<data>
-		dDLXDfMjE6MPEeOC+3WJD9nhieI=
+		auYzCIxlY2jTkyI1BlljW3KUTJY=
 		</data>
 		<key>Headers/NMBExceptionCapture.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/Nimble-Swift.h</key>
 		<data>
-		RRC18ZLh61M2db2KVtnXgDqiBss=
+		ix7zUf4GFfA4sevTnSKvAsAN3xM=
 		</data>
 		<key>Headers/Nimble.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		A2ybf/sSQKOLgTbfIAtZQ73l2Dw=
+		EC/pwkbXBInSnGjNef5lolV18SU=
 		</data>
 		<key>Modules/Nimble.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -30,7 +30,7 @@
 		</data>
 		<key>Modules/Nimble.swiftmodule/arm.swiftmodule</key>
 		<data>
-		0kZ6fbMGHXjLlggJ12nCu6wXY4Y=
+		NKoK/1sq+zUo8vUGeptwQv3hRFU=
 		</data>
 		<key>Modules/Nimble.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/Nimble.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		N0NsgmOYXzRInpItv9nPzmufqiI=
+		1PhaEZiu5heDZ6goR6I+Xr5pPpM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -49,7 +49,7 @@
 	<dict>
 		<key>Headers/DSL.h</key>
 		<data>
-		dDLXDfMjE6MPEeOC+3WJD9nhieI=
+		auYzCIxlY2jTkyI1BlljW3KUTJY=
 		</data>
 		<key>Headers/NMBExceptionCapture.h</key>
 		<data>
@@ -57,7 +57,7 @@
 		</data>
 		<key>Headers/Nimble-Swift.h</key>
 		<data>
-		RRC18ZLh61M2db2KVtnXgDqiBss=
+		ix7zUf4GFfA4sevTnSKvAsAN3xM=
 		</data>
 		<key>Headers/Nimble.h</key>
 		<data>
@@ -69,7 +69,7 @@
 		</data>
 		<key>Modules/Nimble.swiftmodule/arm.swiftmodule</key>
 		<data>
-		0kZ6fbMGHXjLlggJ12nCu6wXY4Y=
+		NKoK/1sq+zUo8vUGeptwQv3hRFU=
 		</data>
 		<key>Modules/Nimble.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -77,7 +77,7 @@
 		</data>
 		<key>Modules/Nimble.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		N0NsgmOYXzRInpItv9nPzmufqiI=
+		1PhaEZiu5heDZ6goR6I+Xr5pPpM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

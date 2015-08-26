@@ -68,19 +68,21 @@ class DetailViewController: UITableViewController {
     // MARK: IBActions
 
     @IBAction func refresh() {
-        if request == nil {
+        guard let request = request else {
             return
         }
 
         refreshControl?.beginRefreshing()
 
         let start = CACurrentMediaTime()
-        request?.responseString { request, response, result in
+        request.responseString { request, response, result in
             let end = CACurrentMediaTime()
             self.elapsedTime = end - start
 
-            for (field, value) in response!.allHeaderFields {
-                self.headers["\(field)"] = "\(value)"
+            if let response = response {
+                for (field, value) in response.allHeaderFields {
+                    self.headers["\(field)"] = "\(value)"
+                }
             }
 
             if let segueIdentifier = self.segueIdentifier {
@@ -146,7 +148,7 @@ extension DetailViewController {
         switch Sections(rawValue: indexPath.section)! {
         case .Headers:
             let cell = tableView.dequeueReusableCellWithIdentifier("Header")!
-            let field = headers.keys.array.sort(<)[indexPath.row]
+            let field = headers.keys.sort(<)[indexPath.row]
             let value = headers[field]
 
             cell.textLabel?.text = field
