@@ -2,6 +2,7 @@ import UIKit
 
 class InboxMailCell: UITableViewCell {
 
+    @IBOutlet var from: UILabel!
     @IBOutlet var subject: UILabel!
     @IBOutlet var body: UILabel!
     @IBOutlet var date: UILabel!

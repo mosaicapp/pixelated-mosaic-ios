@@ -28,6 +28,7 @@ class MainInboxController : UIViewController, UITableViewDataSource, UITableView
         
         if let response = mailsResponse {
             let mail = response.mails[indexPath.row]
+            cell.from.text = mail.header.from
             cell.subject.text = mail.header.subject
             cell.date.text = dateFormatter.stringFromDate(mail.header.date)
             cell.body.text = mail.textPlainBody

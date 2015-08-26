@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8164.2" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="I4T-Sd-1Yt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="I4T-Sd-1Yt">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8135.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -22,48 +22,64 @@
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="inboxMailCell" rowHeight="88" id="Wvr-ue-Bpu" customClass="InboxMailCell" customModule="Mosaic" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="86" width="600" height="88"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="inboxMailCell" rowHeight="100" id="Wvr-ue-Bpu" customClass="InboxMailCell" customModule="Mosaic" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="86" width="600" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wvr-ue-Bpu" id="U1L-Ld-3xd">
-                                            <rect key="frame" x="0.0" y="0.0" width="567" height="87"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHn-il-tW7" userLabel="Subject">
-                                                    <rect key="frame" x="8" y="8" width="551" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHn-il-tW7" userLabel="From">
+                                                    <rect key="frame" x="8" y="8" width="510" height="22"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-JN-1kg" userLabel="Date">
-                                                    <rect key="frame" x="517" y="8" width="42" height="20"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SnO-JN-1kg" userLabel="Date">
+                                                    <rect key="frame" x="523" y="8" width="36" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhD-eu-sP6" userLabel="Body">
-                                                    <rect key="frame" x="8" y="35" width="551" height="44"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHe-IW-93T">
+                                                    <rect key="frame" x="8" y="30" width="551" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="Bw8-ZM-7pB"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WhD-eu-sP6" userLabel="Body">
+                                                    <rect key="frame" x="8" y="52" width="551" height="39"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="zHe-IW-93T" firstAttribute="leading" secondItem="U1L-Ld-3xd" secondAttribute="leadingMargin" id="33Q-Ls-D5c"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="WhD-eu-sP6" secondAttribute="trailing" id="63z-Ii-m7o"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="WhD-eu-sP6" secondAttribute="leading" id="DyL-MT-m4d"/>
                                                 <constraint firstItem="WhD-eu-sP6" firstAttribute="top" secondItem="GHn-il-tW7" secondAttribute="bottom" constant="7" id="SZy-IF-eA0"/>
+                                                <constraint firstItem="SnO-JN-1kg" firstAttribute="leading" secondItem="GHn-il-tW7" secondAttribute="trailing" constant="5" id="Xj9-gd-Qy9"/>
                                                 <constraint firstItem="SnO-JN-1kg" firstAttribute="trailing" secondItem="U1L-Ld-3xd" secondAttribute="trailingMargin" id="axx-Zm-cHr"/>
+                                                <constraint firstItem="zHe-IW-93T" firstAttribute="top" secondItem="GHn-il-tW7" secondAttribute="bottom" id="e8s-Y4-V7n"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="WhD-eu-sP6" secondAttribute="bottom" id="gGG-mQ-wpV"/>
                                                 <constraint firstItem="SnO-JN-1kg" firstAttribute="top" secondItem="U1L-Ld-3xd" secondAttribute="topMargin" id="gxH-X5-VnQ"/>
-                                                <constraint firstItem="SnO-JN-1kg" firstAttribute="baseline" secondItem="GHn-il-tW7" secondAttribute="baseline" id="jF3-mn-5ps"/>
+                                                <constraint firstItem="zHe-IW-93T" firstAttribute="trailing" secondItem="U1L-Ld-3xd" secondAttribute="trailingMargin" id="j1p-ON-rXt"/>
+                                                <constraint firstItem="SnO-JN-1kg" firstAttribute="baseline" secondItem="GHn-il-tW7" secondAttribute="baseline" constant="-1" id="jF3-mn-5ps"/>
                                                 <constraint firstItem="GHn-il-tW7" firstAttribute="leading" secondItem="WhD-eu-sP6" secondAttribute="leading" id="l1l-jh-mzw"/>
                                                 <constraint firstItem="SnO-JN-1kg" firstAttribute="top" secondItem="GHn-il-tW7" secondAttribute="top" id="m02-5J-1tp"/>
+                                                <constraint firstItem="WhD-eu-sP6" firstAttribute="top" secondItem="zHe-IW-93T" secondAttribute="bottom" id="msX-E9-PLr"/>
                                                 <constraint firstItem="WhD-eu-sP6" firstAttribute="top" secondItem="U1L-Ld-3xd" secondAttribute="topMargin" constant="20" id="sQV-O1-BcC"/>
                                                 <constraint firstItem="GHn-il-tW7" firstAttribute="trailing" secondItem="WhD-eu-sP6" secondAttribute="trailing" id="wlc-L0-0bi"/>
                                                 <constraint firstItem="GHn-il-tW7" firstAttribute="leading" secondItem="U1L-Ld-3xd" secondAttribute="leadingMargin" id="x8I-J9-8j2"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="wlc-L0-0bi"/>
+                                                    <exclude reference="SZy-IF-eA0"/>
                                                     <exclude reference="sQV-O1-BcC"/>
                                                 </mask>
                                             </variation>
@@ -71,7 +87,8 @@
                                         <connections>
                                             <outlet property="body" destination="WhD-eu-sP6" id="2gH-Bi-1fP"/>
                                             <outlet property="date" destination="SnO-JN-1kg" id="avc-sg-x2n"/>
-                                            <outlet property="subject" destination="GHn-il-tW7" id="h6i-dd-kbU"/>
+                                            <outlet property="from" destination="GHn-il-tW7" id="Dsi-2v-EUL"/>
+                                            <outlet property="subject" destination="zHe-IW-93T" id="8X6-a8-dsr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
