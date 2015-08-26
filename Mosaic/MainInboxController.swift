@@ -46,6 +46,7 @@ class MainInboxController : UIViewController, UITableViewDataSource, UITableView
             .responseJSON(completionHandler: { (request, response, result) -> Void in
                 switch result {
                 case .Success(let json):
+                    // print(json)
                     self.mailsResponse = self.jsonParseService.parseMailsResponse(json)
                     self.tableView.reloadData()
                 case .Failure(_, _):

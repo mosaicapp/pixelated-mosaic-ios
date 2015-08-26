@@ -32,7 +32,7 @@ extension Mail: Decodable {
     static func decode(json: JSON) -> Decoded<Mail> {
         return curry(Mail.init)
             <^> json <| "header"
-            <*> json <| "textPlainBody"
+            <*> json <|? "textPlainBody"
             <*> json <| "mailbox"
     }
 }
@@ -50,8 +50,8 @@ extension Header: Decodable {
         return curry(Header.init)
             <^> json <|? "from"
             <*> json <|| "to"
-            <*> json <|| "cc"
-            <*> json <|| "bcc"
+            <*> json <||? "cc"
+            <*> json <||? "bcc"
             <*> json <| "subject"
             <*> json <| "date"
     }
