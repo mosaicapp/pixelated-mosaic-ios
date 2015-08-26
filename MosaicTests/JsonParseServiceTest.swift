@@ -18,8 +18,8 @@ class JsonParseServiceTestSpec: QuickSpec {
                 expect(res?.mails[0].header.from) == "alice@dev.pixelated-project.org"
                 expect(res?.mails[0].header.to.count) == 1
                 expect(res?.mails[0].header.to).to(contain("bob@dev.pixelated-project.org"))
-                expect(res?.mails[0].header.cc.count) == 2
-                expect(res?.mails[0].header.bcc.count) == 1
+                expect(res?.mails[0].header.cc!.count) == 2
+                expect(res?.mails[0].header.bcc!.count) == 1
                 expect(res?.mails[0].header.subject) == "Hello"
                 expect(res?.mails[0].header.date).notTo(beNil())
                 expect(res?.mails[0].textPlainBody) == "world"
