@@ -10,6 +10,8 @@ class MainInboxController : UIViewController, UITableViewDataSource, UITableView
     let dateFormatter = NSDateFormatter()
     
     var mailsResponse : MailsResponse?
+    var refreshControl:UIRefreshControl!
+    var isRefreshing: Bool = false
     
     override func viewDidLoad() {
         tableView.delegate = self
@@ -17,6 +19,11 @@ class MainInboxController : UIViewController, UITableViewDataSource, UITableView
         
         dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
         dateFormatter.timeStyle = NSDateFormatterStyle.NoStyle
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("Pull To Refresh", comment: "PullToRefreshAction"))
+        self.refreshControl.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -51,22 +58,44 @@ class MainInboxController : UIViewController, UITableViewDataSource, UITableView
                         // print(json)
                         self.mailsResponse = self.jsonParseService.parseMailsResponse(json)
                         self.tableView.reloadData()
+                        
+                        if self.isRefreshing {
+                            self.refreshControl.endRefreshing()
+                        }
+                        
                     case .Failure(_, _):
-                       let alert = AlertService.createDefaultAlert("Data Error", message: "Couldn't load inbox emails. Please try again later")
-                       if let alertToPresent = alert {
-                            self.presentViewController(alertToPresent, animated: true, completion: nil)
-                       }
-                    
+                        
+                        
+                        let alert = AlertService.createDefaultAlert("Data Error", message: "Couldn't load inbox emails. Please try again later")
+                        if let alertToPresent = alert {
+                            self.presentViewController(alertToPresent, animated: true, completion: { () -> Void in
+                                if self.isRefreshing {
+                                    self.refreshControl.endRefreshing()
+                                }
+                            })
+                        }
                         break;
                     }
                 })
         } else {
+            if self.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+            
             let alert = AlertService.createDefaultAlert("Connection Error", message: "")
             if let alertToPresent = alert {
-                self.presentViewController(alertToPresent, animated: true, completion: nil)
+                self.presentViewController(alertToPresent, animated: true, completion: { () -> Void in
+                    if self.isRefreshing {
+                        self.refreshControl.endRefreshing()
+                    }
+                })
             }
         }
-        
+    }
+    
+    func refresh(sender:AnyObject) {
+        isRefreshing = true
+        loadInbox()
     }
     
 }
