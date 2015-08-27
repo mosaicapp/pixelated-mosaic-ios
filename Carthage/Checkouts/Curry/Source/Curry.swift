@@ -1,3 +1,7 @@
+public func curry<A, B>(function: (A) -> B) -> A -> B {
+    return function
+}
+
 public func curry<A, B, C>(function: (A, B) -> C) -> A -> B -> C {
     return { a in { b in function(a, b) } }
 }

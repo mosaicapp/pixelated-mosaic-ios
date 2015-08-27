@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		253862C51B8F398C00FB6862 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253862C41B8F398C00FB6862 /* Reachability.swift */; settings = {ASSET_TAGS = (); }; };
+		253862C91B8F3CD900FB6862 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253862C81B8F3CD900FB6862 /* AlertService.swift */; settings = {ASSET_TAGS = (); }; };
 		344E516F1B69612E0080DB5D /* MainInboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344E516E1B69612E0080DB5D /* MainInboxController.swift */; };
 		344E51711B6966F30080DB5D /* InboxMailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344E51701B6966F30080DB5D /* InboxMailCell.swift */; };
 		4DC7825A1B2A1AF4009290CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC782591B2A1AF4009290CD /* AppDelegate.swift */; };
@@ -73,6 +75,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		253862C41B8F398C00FB6862 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		253862C81B8F3CD900FB6862 /* AlertService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		344E516E1B69612E0080DB5D /* MainInboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInboxController.swift; sourceTree = "<group>"; };
 		344E51701B6966F30080DB5D /* InboxMailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxMailCell.swift; sourceTree = "<group>"; };
 		4DC782561B2A1AF4009290CD /* Mosaic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mosaic.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +134,7 @@
 		4DC7824D1B2A1AF4009290CD = {
 			isa = PBXGroup;
 			children = (
+				253862C81B8F3CD900FB6862 /* AlertService.swift */,
 				4DC782581B2A1AF4009290CD /* Mosaic */,
 				4DC7826D1B2A1AF5009290CD /* MosaicTests */,
 				4DC782781B2A1AF5009290CD /* MosaicUITests */,
@@ -157,6 +162,7 @@
 				344E516E1B69612E0080DB5D /* MainInboxController.swift */,
 				A71A82EB1B56F5BC00F62B08 /* Ressources */,
 				344E51701B6966F30080DB5D /* InboxMailCell.swift */,
+				253862C41B8F398C00FB6862 /* Reachability.swift */,
 			);
 			path = Mosaic;
 			sourceTree = "<group>";
@@ -369,7 +375,9 @@
 			files = (
 				4F6DEC271B5C1E0F0014DB2D /* JsonParseService.swift in Sources */,
 				4FC65C331B64FA03007CA827 /* Models.swift in Sources */,
+				253862C91B8F3CD900FB6862 /* AlertService.swift in Sources */,
 				4DC7825A1B2A1AF4009290CD /* AppDelegate.swift in Sources */,
+				253862C51B8F398C00FB6862 /* Reachability.swift in Sources */,
 				344E516F1B69612E0080DB5D /* MainInboxController.swift in Sources */,
 				344E51711B6966F30080DB5D /* InboxMailCell.swift in Sources */,
 			);
