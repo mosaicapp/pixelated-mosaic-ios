@@ -26,13 +26,7 @@ class AlertService: NSObject {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel",comment:"AlertActionCancel"), style: .Cancel) { (action) in
-            // ...
-        }
-        alertController.addAction(cancelAction)
-        
         let OKAction = UIAlertAction(title: NSLocalizedString("OK",comment:"AlertActionOK"), style: .Default) { (action) in
-            // ...
         }
         alertController.addAction(OKAction)
         
