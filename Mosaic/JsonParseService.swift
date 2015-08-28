@@ -2,13 +2,33 @@ import Foundation
 import Argo
 import Curry
 
+/**
+  Result type returned from parsing JSON
+*/
+public enum Result<T> {
+    case Success(T)
+    case Failure(String)
+}
+
+
 class JsonParseService {
     
-    func parseMailsResponse(json: AnyObject?) -> MailsResponse? {
+    /**
+      Parse the result from a fetch mails request
+    */
+    func parseMailsResponse(json: AnyObject?) -> Result<MailsResponse> {
         if let json = json {
-            return MailsResponse.decode(JSON.parse(json)).value
+            let decocedResponse = MailsResponse.decode(JSON.parse(json))
+            switch decocedResponse {
+            case let .Success(response):
+                return Result.Success(response)
+            case let .TypeMismatch(message):
+                return Result.Failure("Error parsing JSON: " + message)
+            case let .MissingKey(message):
+                return Result.Failure("Error parsing JSON: missing key " + message)
+            }
         }
-        return .None
+        return Result.Failure("Missing input")
     }
     
 }
@@ -19,11 +39,6 @@ extension MailsResponse: Decodable {
         return curry(MailsResponse.init)
             <^> json <|| "mails"
             <*> json <|  "stats"
-        //            <*> j <| "name"
-        //            <*> j <|? "email" // Use ? for parsing optional values
-        //            <*> j <| "role" // Custom types that also conform to Decodable just work
-        //            <*> j <| ["company", "name"] // Parse nested objects
-        //            <*> j <|| "friends" // parse arrays of objects
     }
 }
 
