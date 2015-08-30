@@ -1,5 +1,6 @@
 import Quick
 import Nimble
+import XCTest
 
 class JsonParseServiceTestSpec: QuickSpec {
     override func spec() {
@@ -29,14 +30,13 @@ class JsonParseServiceTestSpec: QuickSpec {
                     expect(res.mails[1].header.from).to(beNil())
                     expect(res.mails[1].header.to.count) == 1
                     expect(res.mails[1].header.to).to(contain("alice@dev.pixelated-project.org"))
-                    expect(res.mails[1].header.cc).to(beEmpty())
-                    expect(res.mails[1].header.bcc).to(beEmpty())
+                    expect(res.mails[1].header.cc).to(beNil())
+                    expect(res.mails[1].header.bcc).to(beNil())
                     expect(res.mails[1].header.subject) == "Welcome"
                     expect(res.mails[1].textPlainBody) == "First mail"
                     expect(res.mails[1].mailbox) == "inbox"
-                default:
-                    // TODO
-                    expect(false) == true
+                case let .Failure(msg):
+                    XCTFail(msg)
                 }
             }
         }

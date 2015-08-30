@@ -16,8 +16,6 @@
             "header": {
                 "from": null,
                 "to": ["alice@dev.pixelated-project.org"],
-                "cc": [],
-                "bcc": [],
                 "subject": "Welcome",
                 "date": "2015-07-15T18:08:23.955999+00:00"
             },
