@@ -192,6 +192,11 @@ SWIFT_CLASS("_TtC6Nimble14NMBObjCMatcher")
 
 
 @interface NMBObjCMatcher (SWIFT_EXTENSION(Nimble))
++ (NMBObjCMatcher * __nonnull)beNilMatcher;
+@end
+
+
+@interface NMBObjCMatcher (SWIFT_EXTENSION(Nimble))
 + (NMBObjCMatcher * __nonnull)beEmptyMatcher;
 @end
 
@@ -210,9 +215,10 @@ SWIFT_CLASS("_TtC6Nimble14NMBObjCMatcher")
 + (NMBObjCMatcher * __nonnull)beGreaterThanOrEqualToMatcher:(id <NMBComparable> __nullable)expected;
 @end
 
+@class NMBObjCRaiseExceptionMatcher;
 
 @interface NMBObjCMatcher (SWIFT_EXTENSION(Nimble))
-+ (NMBObjCMatcher * __nonnull)containMatcher:(NSArray<NSObject *> * __nonnull)expected;
++ (NMBObjCRaiseExceptionMatcher * __nonnull)raiseExceptionMatcher;
 @end
 
 
@@ -262,20 +268,14 @@ SWIFT_CLASS("_TtC6Nimble14NMBObjCMatcher")
 + (NMBObjCBeCloseToMatcher * __nonnull)beCloseToMatcher:(NSNumber * __nonnull)expected within:(double)within;
 @end
 
-@class NMBObjCRaiseExceptionMatcher;
 
 @interface NMBObjCMatcher (SWIFT_EXTENSION(Nimble))
-+ (NMBObjCRaiseExceptionMatcher * __nonnull)raiseExceptionMatcher;
++ (NMBObjCMatcher * __nonnull)containMatcher:(NSArray<NSObject *> * __nonnull)expected;
 @end
 
 
 @interface NMBObjCMatcher (SWIFT_EXTENSION(Nimble))
 + (NMBObjCMatcher * __nonnull)endWithMatcher:(id __nonnull)expected;
-@end
-
-
-@interface NMBObjCMatcher (SWIFT_EXTENSION(Nimble))
-+ (NMBObjCMatcher * __nonnull)beNilMatcher;
 @end
 
 
@@ -320,6 +320,11 @@ SWIFT_PROTOCOL("_TtP6Nimble20NMBOrderedCollection_")
 @end
 
 
+@interface NSDate (SWIFT_EXTENSION(Nimble)) <NMBDoubleConvertible>
+@property (nonatomic, readonly) double doubleValue;
+@end
+
+
 @interface NSDictionary (SWIFT_EXTENSION(Nimble)) <NMBCollection>
 @end
 
@@ -341,11 +346,11 @@ SWIFT_PROTOCOL("_TtP6Nimble20NMBOrderedCollection_")
 @end
 
 
-@interface NSSet (SWIFT_EXTENSION(Nimble)) <NMBCollection>
+@interface NSSet (SWIFT_EXTENSION(Nimble)) <NMBContainer>
 @end
 
 
-@interface NSSet (SWIFT_EXTENSION(Nimble)) <NMBContainer>
+@interface NSSet (SWIFT_EXTENSION(Nimble)) <NMBCollection>
 @end
 
 

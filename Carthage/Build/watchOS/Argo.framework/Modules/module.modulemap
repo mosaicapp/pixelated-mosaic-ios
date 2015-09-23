@@ -1,3 +1,0 @@
-framework module Argo {
-    header "Argo-Swift.h"
-}

@@ -21,8 +21,8 @@ class MailsService {
     
     func fetchInboxMails(page page: Int, size: Int, delegate: FetchMailsDelegate) {
         Alamofire.request(.GET, baseUrl + "/mails", parameters: ["q": "tag:inbox", "p": page, "w": size])
-        .responseJSON(completionHandler: { (request, response, result) -> Void in
-            switch result {
+            .responseJSON { response in
+            switch response.result {
             case .Success(let json):
                 // print(json)
                 let mails = self.jsonParseService.parseMailsResponse(json)
@@ -32,11 +32,11 @@ class MailsService {
                 case let .Failure(message):
                     delegate.failure(message)
                 }
-            case let .Failure(_, error):
+            case let .Failure(error):
                 print(error)
                 delegate.failure("Failed http request")
             }
-        })
+        }
     }
     
 }

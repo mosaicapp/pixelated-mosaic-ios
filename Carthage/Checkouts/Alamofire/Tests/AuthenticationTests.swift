@@ -78,7 +78,10 @@ class BasicAuthenticationTestCase: AuthenticationTestCase {
         XCTAssertNil(response, "response should be nil")
         XCTAssertNotNil(data, "data should not be nil")
         XCTAssertNotNil(error, "error should not be nil")
-        XCTAssertEqual(error?.code ?? 0, -999, "error should be NSURLErrorDomain Code -999 'cancelled'")
+
+        if let code = error?.code {
+            XCTAssertEqual(code, -999, "error should be NSURLErrorDomain Code -999 'cancelled'")
+        }
     }
 
     func testHTTPBasicAuthenticationWithValidCredentials() {
@@ -151,7 +154,10 @@ class HTTPDigestAuthenticationTestCase: AuthenticationTestCase {
         XCTAssertNil(response, "response should be nil")
         XCTAssertNotNil(data, "data should not be nil")
         XCTAssertNotNil(error, "error should not be nil")
-        XCTAssertEqual(error?.code ?? 0, -999, "error should be NSURLErrorDomain Code -999 'cancelled'")
+
+        if let code = error?.code {
+            XCTAssertEqual(code, -999, "error should be NSURLErrorDomain Code -999 'cancelled'")
+        }
     }
 
     func testHTTPDigestAuthenticationWithValidCredentials() {

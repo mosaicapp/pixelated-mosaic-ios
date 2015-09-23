@@ -22,10 +22,13 @@ class JsonParseService {
             switch decocedResponse {
             case let .Success(response):
                 return Result.Success(response)
-            case let .TypeMismatch(message):
-                return Result.Failure("Error parsing JSON: " + message)
-            case let .MissingKey(message):
-                return Result.Failure("Error parsing JSON: missing key " + message)
+            case let .Failure(error):
+                switch error {
+                case let .MissingKey(key):
+                    return Result.Failure("Error parsing JSON: Missing key " + key)
+                case let .TypeMismatch(expected, actual):
+                    return Result.Failure("Error parsing JSON: expected " + expected + ", found " + actual)
+                }
             }
         }
         return Result.Failure("Missing input")
@@ -86,9 +89,9 @@ extension NSDate: Decodable {
             if let date = jsonDateFormatter.dateFromString(dateString) {
                 return Decoded.Success(date)
             }
-            return Decoded.TypeMismatch(dateString)
+            return Decoded.Failure(DecodeError.TypeMismatch(expected: "a date", actual: dateString))
         default:
-            return Decoded.TypeMismatch(json.description)
+            return Decoded.Failure(DecodeError.TypeMismatch(expected: "a date", actual: json.description))
         }
     }
 }

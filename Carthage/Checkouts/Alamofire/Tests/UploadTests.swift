@@ -187,7 +187,7 @@ class UploadDataTestCase: BaseTestCase {
         var responseRequest: NSURLRequest?
         var responseResponse: NSHTTPURLResponse?
         var responseData: NSData?
-        var responseError: NSError?
+        var responseError: ErrorType?
 
         // When
         let upload = Alamofire.upload(.POST, URLString, data: data)
@@ -580,6 +580,69 @@ class UploadMultipartFormDataTestCase: BaseTestCase {
             XCTAssertEqual(contentType, multipartFormData.contentType, "Content-Type header value should match")
         } else {
             XCTFail("Content-Type header value should not be nil")
+        }
+    }
+
+    func testThatUploadingMultipartFormDataOnBackgroundSessionWritesDataToFileToAvoidCrash() {
+        // Given
+        let manager: Manager = {
+            let identifier = "com.alamofire.uploadtests.\(NSUUID().UUIDString)"
+            let configuration = NSURLSessionConfiguration.backgroundSessionConfigurationForAllPlatformsWithIdentifier(identifier)
+
+            return Manager(configuration: configuration, serverTrustPolicyManager: nil)
+        }()
+
+        let URLString = "https://httpbin.org/post"
+        let french = "français".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+        let japanese = "日本語".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!
+
+        let expectation = expectationWithDescription("multipart form data upload should succeed")
+
+        var request: NSURLRequest?
+        var response: NSHTTPURLResponse?
+        var data: NSData?
+        var error: NSError?
+        var streamingFromDisk: Bool?
+
+        // When
+        manager.upload(
+            .POST,
+            URLString,
+            multipartFormData: { multipartFormData in
+                multipartFormData.appendBodyPart(data: french, name: "french")
+                multipartFormData.appendBodyPart(data: japanese, name: "japanese")
+            },
+            encodingCompletion: { result in
+                switch result {
+                case let .Success(upload, uploadStreamingFromDisk, _):
+                    streamingFromDisk = uploadStreamingFromDisk
+
+                    upload.response { responseRequest, responseResponse, responseData, responseError in
+                        request = responseRequest
+                        response = responseResponse
+                        data = responseData
+                        error = responseError
+
+                        expectation.fulfill()
+                    }
+                case .Failure:
+                    expectation.fulfill()
+                }
+            }
+        )
+
+        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
+
+        // Then
+        XCTAssertNotNil(request, "request should not be nil")
+        XCTAssertNotNil(response, "response should not be nil")
+        XCTAssertNotNil(data, "data should not be nil")
+        XCTAssertNil(error, "error should be nil")
+
+        if let streamingFromDisk = streamingFromDisk {
+            XCTAssertTrue(streamingFromDisk, "streaming from disk should be true")
+        } else {
+            XCTFail("streaming from disk should not be nil")
         }
     }
 

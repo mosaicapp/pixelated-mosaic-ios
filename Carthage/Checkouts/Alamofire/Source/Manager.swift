@@ -114,10 +114,12 @@ public class Manager {
     // MARK: - Lifecycle
 
     /**
-        Initializes the `Manager` instance with the given configuration and server trust policy.
+        Initializes the `Manager` instance with the specified configuration, delegate and server trust policy.
 
         - parameter configuration:            The configuration used to construct the managed session. 
                                               `NSURLSessionConfiguration.defaultSessionConfiguration()` by default.
+        - parameter delegate:                 The delegate used when initializing the session. `SessionDelegate()` by
+                                              default.
         - parameter serverTrustPolicyManager: The server trust policy manager to use for evaluating all server trust 
                                               challenges. `nil` by default.
 
@@ -125,16 +127,44 @@ public class Manager {
     */
     public init(
         configuration: NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration(),
+        delegate: SessionDelegate = SessionDelegate(),
         serverTrustPolicyManager: ServerTrustPolicyManager? = nil)
     {
-        self.delegate = SessionDelegate()
-        self.session = NSURLSession(configuration: configuration, delegate: self.delegate, delegateQueue: nil)
-        self.session.serverTrustPolicyManager = serverTrustPolicyManager
+        self.delegate = delegate
+        self.session = NSURLSession(configuration: configuration, delegate: delegate, delegateQueue: nil)
 
-        self.delegate.sessionDidFinishEventsForBackgroundURLSession = { [weak self] session in
-            if let strongSelf = self {
-                strongSelf.backgroundCompletionHandler?()
-            }
+        commonInit(serverTrustPolicyManager: serverTrustPolicyManager)
+    }
+
+    /**
+        Initializes the `Manager` instance with the specified session, delegate and server trust policy.
+
+        - parameter session:                  The URL session.
+        - parameter delegate:                 The delegate of the URL session. Must equal the URL session's delegate.
+        - parameter serverTrustPolicyManager: The server trust policy manager to use for evaluating all server trust
+                                              challenges. `nil` by default.
+
+        - returns: The new `Manager` instance if the URL session's delegate matches the delegate parameter.
+    */
+    public init?(
+        session: NSURLSession,
+        delegate: SessionDelegate,
+        serverTrustPolicyManager: ServerTrustPolicyManager? = nil)
+    {
+        self.delegate = delegate
+        self.session = session
+
+        guard delegate === session.delegate else { return nil }
+
+        commonInit(serverTrustPolicyManager: serverTrustPolicyManager)
+    }
+
+    private func commonInit(serverTrustPolicyManager serverTrustPolicyManager: ServerTrustPolicyManager?) {
+        session.serverTrustPolicyManager = serverTrustPolicyManager
+
+        delegate.sessionDidFinishEventsForBackgroundURLSession = { [weak self] session in
+            guard let strongSelf = self else { return }
+            dispatch_async(dispatch_get_main_queue()) { strongSelf.backgroundCompletionHandler?() }
         }
     }
 
@@ -145,7 +175,7 @@ public class Manager {
     // MARK: - Request
 
     /**
-        Creates a request for the specified method, URL string, parameters, and parameter encoding.
+        Creates a request for the specified method, URL string, parameters, parameter encoding and headers.
 
         - parameter method:     The HTTP method.
         - parameter URLString:  The URL string.
@@ -218,6 +248,15 @@ public class Manager {
                     self.subdelegates[task.taskIdentifier] = newValue
                 }
             }
+        }
+
+        /**
+            Initializes the `SessionDelegate` instance.
+
+            - returns: The new `SessionDelegate` instance.
+        */
+        public override init() {
+            super.init()
         }
 
         // MARK: - NSURLSessionDelegate
@@ -646,5 +685,24 @@ public class Manager {
         var _streamTaskWriteClosed: Any?
         var _streamTaskBetterRouteDiscovered: Any?
         var _streamTaskDidBecomeInputStream: Any?
+
+        // MARK: - NSObject
+
+        public override func respondsToSelector(selector: Selector) -> Bool {
+            switch selector {
+            case "URLSession:didBecomeInvalidWithError:":
+                return sessionDidBecomeInvalidWithError != nil
+            case "URLSession:didReceiveChallenge:completionHandler:":
+                return sessionDidReceiveChallenge != nil
+            case "URLSessionDidFinishEventsForBackgroundURLSession:":
+                return sessionDidFinishEventsForBackgroundURLSession != nil
+            case "URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:":
+                return taskWillPerformHTTPRedirection != nil
+            case "URLSession:dataTask:didReceiveResponse:completionHandler:":
+                return dataTaskDidReceiveResponse != nil
+            default:
+                return self.dynamicType.instancesRespondToSelector(selector)
+            }
+        }
     }
 }

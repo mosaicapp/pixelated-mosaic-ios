@@ -69,6 +69,17 @@ class DownloadResponseTestCase: BaseTestCase {
     let searchPathDirectory: NSSearchPathDirectory = .CachesDirectory
     let searchPathDomain: NSSearchPathDomainMask = .UserDomainMask
 
+    let cachesURL: NSURL = {
+        let cachesDirectory = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true).first!
+        let cachesURL = NSURL(fileURLWithPath: cachesDirectory, isDirectory: true)
+
+        return cachesURL
+    }()
+
+    var randomCachesFileURL: NSURL {
+        return cachesURL.URLByAppendingPathComponent("\(NSUUID().UUIDString).json")
+    }
+
     func testDownloadRequest() {
         // Given
         let numberOfLines = 100
@@ -165,7 +176,7 @@ class DownloadResponseTestCase: BaseTestCase {
         var responseRequest: NSURLRequest?
         var responseResponse: NSHTTPURLResponse?
         var responseData: NSData?
-        var responseError: NSError?
+        var responseError: ErrorType?
 
         // When
         let download = Alamofire.download(.GET, URLString) { _, _ in
@@ -240,6 +251,90 @@ class DownloadResponseTestCase: BaseTestCase {
             try fileManager.removeItemAtURL(fileURL)
         } catch {
             XCTFail("file manager should remove item at URL: \(fileURL)")
+        }
+    }
+
+    func testDownloadRequestWithParameters() {
+        // Given
+        let fileURL = randomCachesFileURL
+        let URLString = "https://httpbin.org/get"
+        let parameters = ["foo": "bar"]
+        let destination: Request.DownloadFileDestination = { _, _ in fileURL }
+
+        let expectation = expectationWithDescription("Download request should download data to file: \(fileURL)")
+
+        var request: NSURLRequest?
+        var response: NSHTTPURLResponse?
+        var error: NSError?
+
+        // When
+        Alamofire.download(.GET, URLString, parameters: parameters, destination: destination)
+            .response { responseRequest, responseResponse, _, responseError in
+                request = responseRequest
+                response = responseResponse
+                error = responseError
+
+                expectation.fulfill()
+            }
+
+        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
+
+        // Then
+        XCTAssertNotNil(request, "request should not be nil")
+        XCTAssertNotNil(response, "response should not be nil")
+        XCTAssertNil(error, "error should be nil")
+
+        if let
+            data = NSData(contentsOfURL: fileURL),
+            JSONObject = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)),
+            JSON = JSONObject as? [String: AnyObject],
+            args = JSON["args"] as? [String: String]
+        {
+            XCTAssertEqual(args["foo"], "bar", "foo parameter should equal bar")
+        } else {
+            XCTFail("args parameter in JSON should not be nil")
+        }
+    }
+
+    func testDownloadRequestWithHeaders() {
+        // Given
+        let fileURL = randomCachesFileURL
+        let URLString = "https://httpbin.org/get"
+        let headers = ["Authorization": "123456"]
+        let destination: Request.DownloadFileDestination = { _, _ in fileURL }
+
+        let expectation = expectationWithDescription("Download request should download data to file: \(fileURL)")
+
+        var request: NSURLRequest?
+        var response: NSHTTPURLResponse?
+        var error: NSError?
+
+        // When
+        Alamofire.download(.GET, URLString, headers: headers, destination: destination)
+            .response { responseRequest, responseResponse, _, responseError in
+                request = responseRequest
+                response = responseResponse
+                error = responseError
+
+                expectation.fulfill()
+            }
+
+        waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
+
+        // Then
+        XCTAssertNotNil(request, "request should not be nil")
+        XCTAssertNotNil(response, "response should not be nil")
+        XCTAssertNil(error, "error should be nil")
+
+        if let
+            data = NSData(contentsOfURL: fileURL),
+            JSONObject = try? NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions(rawValue: 0)),
+            JSON = JSONObject as? [String: AnyObject],
+            headers = JSON["headers"] as? [String: String]
+        {
+            XCTAssertEqual(headers["Authorization"], "123456", "Authorization parameter should equal 123456")
+        } else {
+            XCTFail("headers parameter in JSON should not be nil")
         }
     }
 }
@@ -334,33 +429,30 @@ class DownloadResumeDataTestCase: BaseTestCase {
     func testThatCancelledDownloadResumeDataIsAvailableWithJSONResponseSerializer() {
         // Given
         let expectation = expectationWithDescription("Download should be cancelled")
-
-        var request: NSURLRequest?
-        var response: NSHTTPURLResponse?
-        var result: Result<AnyObject>!
+        var response: Response<AnyObject, NSError>?
 
         // When
         let download = Alamofire.download(.GET, URLString, destination: destination)
         download.progress { _, _, _ in
             download.cancel()
         }
-        download.responseJSON { responseRequest, responseResponse, responseResult in
-            request = responseRequest
-            response = responseResponse
-            result = responseResult
-
+        download.responseJSON { closureResponse in
+            response = closureResponse
             expectation.fulfill()
         }
 
         waitForExpectationsWithTimeout(defaultTimeout, handler: nil)
 
         // Then
-        XCTAssertNotNil(request, "request should not be nil")
-        XCTAssertNotNil(response, "response should not be nil")
-
-        XCTAssertTrue(result.isFailure, "result should be a failure")
-        XCTAssertNotNil(result.data, "data should not be nil")
-        XCTAssertTrue(result.error != nil, "error should not be nil")
+        if let response = response {
+            XCTAssertNotNil(response.request, "request should not be nil")
+            XCTAssertNotNil(response.response, "response should not be nil")
+            XCTAssertNotNil(response.data, "data should not be nil")
+            XCTAssertTrue(response.result.isFailure, "result should be failure")
+            XCTAssertNotNil(response.result.error, "result error should not be nil")
+        } else {
+            XCTFail("response should not be nil")
+        }
 
         XCTAssertNotNil(download.resumeData, "resume data should not be nil")
     }

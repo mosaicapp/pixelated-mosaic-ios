@@ -1,5 +1,0 @@
-machine:
-  environment:
-    XCODE_SCHEME: Argo-Mac
-  xcode:
-    version: 6.3.1
