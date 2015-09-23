@@ -8,7 +8,7 @@ class MainInboxController : UIViewController {
     
     let dateFormatter = NSDateFormatter()
     
-    var mailsResponse : MailsResponse?
+    var mails : Mails?
     var refreshControl:UIRefreshControl!
     var isRefreshing: Bool = false
     
@@ -60,7 +60,7 @@ extension MainInboxController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("inboxMailCell") as! InboxMailCell
         
-        if let response = mailsResponse {
+        if let response = mails {
             let mail = response.mails[indexPath.row]
             cell.from.text = mail.header.from
             cell.subject.text = mail.header.subject
@@ -72,7 +72,7 @@ extension MainInboxController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mailsResponse?.mails.count ?? 0
+        return mails?.mails.count ?? 0
     }
     
 }
@@ -83,8 +83,8 @@ extension MainInboxController: UITableViewDelegate {
 
 extension MainInboxController: FetchMailsDelegate {
     
-    func fetched(response: MailsResponse) {
-        self.mailsResponse = response
+    func fetched(mails: Mails) {
+        self.mails = mails
         self.tableView.reloadData()
         
         if self.isRefreshing {

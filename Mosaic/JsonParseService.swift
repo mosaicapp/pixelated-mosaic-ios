@@ -16,9 +16,9 @@ class JsonParseService {
     /**
       Parse the result from a fetch mails request
     */
-    func parseMailsResponse(json: AnyObject?) -> Result<MailsResponse> {
+    func parseMails(json: AnyObject?) -> Result<Mails> {
         if let json = json {
-            let decocedResponse = MailsResponse.decode(JSON.parse(json))
+            let decocedResponse = Mails.decode(JSON.parse(json))
             switch decocedResponse {
             case let .Success(response):
                 return Result.Success(response)
@@ -37,9 +37,9 @@ class JsonParseService {
 }
 
 // MARK: - MailsResponse
-extension MailsResponse: Decodable {
-    static func decode(json: JSON) -> Decoded<MailsResponse> {
-        return curry(MailsResponse.init)
+extension Mails: Decodable {
+    static func decode(json: JSON) -> Decoded<Mails> {
+        return curry(Mails.init)
             <^> json <|| "mails"
             <*> json <|  "stats"
     }
@@ -59,7 +59,7 @@ extension Mail: Decodable {
 // MARK: - Stats
 extension Stats: Decodable {
     static func decode(json: JSON) -> Decoded<Stats> {
-        return Stats.init <^> json <| "total"
+        return curry(Stats.init) <^> json <| "total"
     }
 }
 

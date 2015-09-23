@@ -1,6 +1,6 @@
 import Foundation
 
-struct MailsResponse {
+struct Mails {
     let mails: [Mail]
     let stats: Stats
 }

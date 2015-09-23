@@ -10,7 +10,7 @@ class JsonParseServiceTestSpec: QuickSpec {
         describe("the MailService") {
             it("should correctly parse JSON response") {
                 let json = JsonFromFile("mailsResponse")
-                let result = jsonParseService.parseMailsResponse(json)
+                let result = jsonParseService.parseMails(json)
                 
                 switch result {
                 case let .Success(res):
