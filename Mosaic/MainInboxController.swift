@@ -65,7 +65,7 @@ class MainInboxController : UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "DetailViewSegue"{
             if let path = self.tableView.indexPathForSelectedRow {
-                if let mails = mailsResponse {
+                if let mails = mails {
                     let choosenMail = mails.mails[path.row]
                     if let controller = segue.destinationViewController as? DetailViewController {
                         controller.detailedMailResponse = choosenMail
