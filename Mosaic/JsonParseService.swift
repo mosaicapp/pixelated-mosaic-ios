@@ -52,6 +52,7 @@ extension Mail: Decodable {
             <^> json <| "header"
             <*> json <|? "textPlainBody"
             <*> json <| "mailbox"
+            <*> json <| "ident"
     }
 }
 

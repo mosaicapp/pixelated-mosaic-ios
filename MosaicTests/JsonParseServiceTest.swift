@@ -26,6 +26,7 @@ class JsonParseServiceTestSpec: QuickSpec {
                     expect(res.mails[0].header.date).notTo(beNil())
                     expect(res.mails[0].textPlainBody) == "world"
                     expect(res.mails[0].mailbox) == "inbox"
+                    expect(res.mails[0].ident) == "M-xxxa"
                     
                     expect(res.mails[1].header.from).to(beNil())
                     expect(res.mails[1].header.to.count) == 1
@@ -35,6 +36,7 @@ class JsonParseServiceTestSpec: QuickSpec {
                     expect(res.mails[1].header.subject) == "Welcome"
                     expect(res.mails[1].textPlainBody) == "First mail"
                     expect(res.mails[1].mailbox) == "inbox"
+                    expect(res.mails[1].ident) == "M-xxxb"
                 case let .Failure(msg):
                     XCTFail(msg)
                 }

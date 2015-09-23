@@ -9,6 +9,7 @@ struct Mail {
     let header: Header
     let textPlainBody: String?
     let mailbox: String
+    let ident: String
 }
 
 struct Stats {

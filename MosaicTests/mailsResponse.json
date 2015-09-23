@@ -10,7 +10,8 @@
                 "date": "2015-06-11T19:08:42.093039+00:00"
             },
             "textPlainBody": "world",
-            "mailbox": "inbox"
+            "mailbox": "inbox",
+            "ident": "M-xxxa"
         },
         {
             "header": {
@@ -20,7 +21,8 @@
                 "date": "2015-07-15T18:08:23.955999+00:00"
             },
             "textPlainBody": "First mail",
-            "mailbox": "inbox"
+            "mailbox": "inbox",
+            "ident": "M-xxxb"
         }
     ],
     "stats" : {
