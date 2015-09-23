@@ -34,6 +34,24 @@ class JsonParseService {
         return Result.Failure("Missing input")
     }
     
+    func parseMail(json: AnyObject?) -> Result<Mail> {
+        if let json = json {
+            let decodedResponse = Mail.decode(JSON.parse(json))
+            switch decodedResponse {
+            case let .Success(response):
+                return Result.Success(response)
+            case let .Failure(error):
+                switch error {
+                case let .MissingKey(key):
+                    return Result.Failure("Error parsing JSON: Missing key " + key)
+                case let .TypeMismatch(expected, actual):
+                    return Result.Failure("Error parsing JSON: expected " + expected + ", found " + actual)
+                }
+            }
+        }
+        return Result.Failure("Missing input")
+    }
+    
 }
 
 // MARK: - MailsResponse
