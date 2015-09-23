@@ -11,6 +11,8 @@ class MainInboxController : UIViewController {
     var mails : Mails?
     var refreshControl:UIRefreshControl!
     var isRefreshing: Bool = false
+    var mailRow: Int!
+    
     
     override func viewDidLoad() {
         tableView.delegate = self
@@ -51,6 +53,26 @@ class MainInboxController : UIViewController {
     func refresh(sender:AnyObject) {
         isRefreshing = true
         loadInbox()
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        mailRow = indexPath.row
+        print("zeile: \(mailRow)")
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "DetailViewSegue"{
+            if let path = self.tableView.indexPathForSelectedRow {
+                if let mails = mailsResponse {
+                    let choosenMail = mails.mails[path.row]
+                    if let controller = segue.destinationViewController as? DetailViewController {
+                        controller.detailedMailResponse = choosenMail
+                    }
+                }
+            }
+        }
     }
     
 }

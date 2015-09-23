@@ -31,6 +31,7 @@
 		8A7E1DFA1B56EB11003453C5 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8A7E1DF81B56EB11003453C5 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A76B8C2A1B694D710006873C /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76B8C281B694D710006873C /* Argo.framework */; };
 		A76B8C2B1B694D710006873C /* Curry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76B8C291B694D710006873C /* Curry.framework */; };
+		C34BAD541BB31A8500388C17 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34BAD531BB31A8500388C17 /* DetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		8A7E1DF81B56EB11003453C5 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		A76B8C281B694D710006873C /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
 		A76B8C291B694D710006873C /* Curry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Curry.framework; path = Carthage/Build/iOS/Curry.framework; sourceTree = "<group>"; };
+		C34BAD531BB31A8500388C17 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				4F6DEC261B5C1E0F0014DB2D /* JsonParseService.swift */,
 				4F3447BF1B904FC500685D13 /* MailsService.swift */,
 				344E516E1B69612E0080DB5D /* MainInboxController.swift */,
+				C34BAD531BB31A8500388C17 /* DetailViewController.swift */,
 				A71A82EB1B56F5BC00F62B08 /* Ressources */,
 				344E51701B6966F30080DB5D /* InboxMailCell.swift */,
 				253862C41B8F398C00FB6862 /* Reachability.swift */,
@@ -376,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C34BAD541BB31A8500388C17 /* DetailViewController.swift in Sources */,
 				4F6DEC271B5C1E0F0014DB2D /* JsonParseService.swift in Sources */,
 				4FC65C331B64FA03007CA827 /* Models.swift in Sources */,
 				253862C91B8F3CD900FB6862 /* AlertService.swift in Sources */,
