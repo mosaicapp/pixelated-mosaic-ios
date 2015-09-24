@@ -1,17 +1,23 @@
 import Foundation
 import Alamofire
 
-protocol FetchMailsDelegate {
-    func fetched(mails: Mails) -> Void
+protocol FetchDelegate {
     func failure(message: String) -> Void
 }
 
-extension FetchMailsDelegate {
+extension FetchDelegate {
     func failure(message: String) {
-        print("Error when fetching mails:", message)
+        debugPrint("Error when fetching mails:", message)
     }
 }
 
+protocol FetchMailsDelegate: FetchDelegate {
+    func fetched(mails: Mails) -> Void
+}
+
+protocol FetchMailDelegate: FetchDelegate {
+    func fetched(mail: Mail) -> Void
+}
 
 class MailsService {
     
@@ -33,19 +39,27 @@ class MailsService {
                     delegate.failure(message)
                 }
             case let .Failure(error):
-                print(error)
+                debugPrint(error)
                 delegate.failure("Failed http request")
             }
         }
     }
     
-    func fetchSingleMail(ident ident: String) {
+    func fetchSingleMail(ident ident: String, delegate: FetchMailDelegate) {
         Alamofire.request(.GET, baseUrl + "/mail/" + ident).responseJSON { response in
             switch response.result {
             case let .Success(json):
                 print(json)
+                let mail = self.jsonParseService.parseMail(json)
+                switch mail {
+                case let .Success(value):
+                    delegate.fetched(value)
+                case let .Failure(message):
+                    delegate.failure(message)
+                }
             case let .Failure(error):
-                print(error)
+                debugPrint(error)
+                delegate.failure("Failed http request")
             }
         }
     }
