@@ -33,6 +33,8 @@ class JsonParseService {
                     return .Failure("Error parsing JSON: Missing key " + key)
                 case let .TypeMismatch(expected, actual):
                     return .Failure("Error parsing JSON: expected " + expected + ", found " + actual)
+                case let .Custom(s):
+                    return .Failure("Error parsing JSON: " + s)
                 }
             }
         }
