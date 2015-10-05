@@ -104,7 +104,7 @@ extension MainInboxController: UITableViewDelegate {
     
 }
 
-extension MainInboxController: FetchMailsDelegate {
+extension MainInboxController: FetchDelegate {
     
     func fetched(mails: Mails) {
         self.mails = mails

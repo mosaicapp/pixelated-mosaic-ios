@@ -38,7 +38,7 @@ class DetailViewController: UIViewController {
     
 }
 
-extension DetailViewController: FetchMailDelegate {
+extension DetailViewController: FetchDelegate {
     
     func fetched(mail: Mail) {
         render(mail)

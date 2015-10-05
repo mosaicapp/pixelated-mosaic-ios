@@ -13,30 +13,17 @@ public enum Result<T> {
 
 class JsonParseService {
     
-    /**
-      Parse the result from a fetch mails request
-    */
     func parseMails(json: AnyObject?) -> Result<Mails> {
-        if let json = json {
-            let decocedResponse = Mails.decode(JSON.parse(json))
-            switch decocedResponse {
-            case let .Success(response):
-                return Result.Success(response)
-            case let .Failure(error):
-                switch error {
-                case let .MissingKey(key):
-                    return Result.Failure("Error parsing JSON: Missing key " + key)
-                case let .TypeMismatch(expected, actual):
-                    return Result.Failure("Error parsing JSON: expected " + expected + ", found " + actual)
-                }
-            }
-        }
-        return Result.Failure("Missing input")
+        return parseJson(json, decode: Mails.decode)
     }
     
     func parseMail(json: AnyObject?) -> Result<Mail> {
+        return parseJson(json, decode: Mail.decode)
+    }
+    
+    private func parseJson<T>(json: AnyObject?, decode: (JSON) -> Decoded<T>) -> Result<T> {
         if let json = json {
-            let decodedResponse = Mail.decode(JSON.parse(json))
+            let decodedResponse = decode(JSON.parse(json))
             switch decodedResponse {
             case let .Success(response):
                 return Result.Success(response)
