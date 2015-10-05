@@ -34,7 +34,7 @@ class MailsService {
     
     private func handleResponse<FD: FetchDelegate>(
         response: Response<AnyObject, NSError>,
-        withParser parse: (AnyObject) -> Result<FD.T>,
+        withParser parse: (AnyObject) -> JsonParseResult<FD.T>,
         andDelegate delegate: FD) -> Void
     {
         switch response.result {

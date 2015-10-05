@@ -5,7 +5,7 @@ import Curry
 /**
   Result type returned from parsing JSON
 */
-public enum Result<T> {
+public enum JsonParseResult<T> {
     case Success(T)
     case Failure(String)
 }
@@ -13,30 +13,30 @@ public enum Result<T> {
 
 class JsonParseService {
     
-    func parseMails(json: AnyObject?) -> Result<Mails> {
+    func parseMails(json: AnyObject?) -> JsonParseResult<Mails> {
         return parseJson(json, decode: Mails.decode)
     }
     
-    func parseMail(json: AnyObject?) -> Result<Mail> {
+    func parseMail(json: AnyObject?) -> JsonParseResult<Mail> {
         return parseJson(json, decode: Mail.decode)
     }
     
-    private func parseJson<T>(json: AnyObject?, decode: (JSON) -> Decoded<T>) -> Result<T> {
+    private func parseJson<T>(json: AnyObject?, decode: (JSON) -> Decoded<T>) -> JsonParseResult<T> {
         if let json = json {
             let decodedResponse = decode(JSON.parse(json))
             switch decodedResponse {
             case let .Success(response):
-                return Result.Success(response)
+                return .Success(response)
             case let .Failure(error):
                 switch error {
                 case let .MissingKey(key):
-                    return Result.Failure("Error parsing JSON: Missing key " + key)
+                    return .Failure("Error parsing JSON: Missing key " + key)
                 case let .TypeMismatch(expected, actual):
-                    return Result.Failure("Error parsing JSON: expected " + expected + ", found " + actual)
+                    return .Failure("Error parsing JSON: expected " + expected + ", found " + actual)
                 }
             }
         }
-        return Result.Failure("Missing input")
+        return .Failure("Missing input")
     }
     
 }
