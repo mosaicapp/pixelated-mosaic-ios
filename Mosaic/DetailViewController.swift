@@ -32,7 +32,7 @@ class DetailViewController: UIViewController {
     private func render(mail: Mail) {
         sentFromLabel.text = mail.header.from
         mailSubject.text = mail.header.subject
-        mailDateLabel.text = dateFormatter.stringFromDate(mail.header.date)
+        mailDateLabel.text = mail.header.date.format(dateFormatter)
         mailContentTextView.text = mail.textPlainBody
     }
     

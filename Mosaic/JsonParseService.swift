@@ -94,21 +94,27 @@ extension Header: Decodable {
     }
 }
 
-extension NSDate: Decodable {
-    
-    private static let jsonDateFormatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH-mm-ss.Sx"
-        return formatter
+// MARK: - Date
+extension Date: Decodable {
+    private static let jsonDateFormatters: [NSDateFormatter] = {
+        let formatter1 = NSDateFormatter()
+        formatter1.dateFormat = "yyyy-MM-dd'T'HH-mm-ss.Sx"
+
+        let formatter2 = NSDateFormatter()
+        formatter2.dateFormat = "EEE, d MMM yyyy HH-mm-ss Z"
+
+        return [formatter1, formatter2]
     }()
     
-    public static func decode(json: JSON) -> Decoded<NSDate> {
+    static func decode(json: JSON) -> Decoded<Date> {
         switch json {
         case .String(let dateString):
-            if let date = jsonDateFormatter.dateFromString(dateString) {
-                return Decoded.Success(date)
+            for formatter in jsonDateFormatters {
+                if let date = formatter.dateFromString(dateString) {
+                    return Decoded.Success(Date.Parsed(date))
+                }
             }
-            return Decoded.Failure(DecodeError.TypeMismatch(expected: "a date", actual: dateString))
+            return Decoded.Success(Date.Unparsed(dateString))
         default:
             return Decoded.Failure(DecodeError.TypeMismatch(expected: "a date", actual: json.description))
         }

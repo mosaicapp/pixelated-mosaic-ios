@@ -22,5 +22,19 @@ struct Header {
     let cc: [String]?
     let bcc: [String]?
     let subject: String
-    let date: NSDate
+    let date: Date
+}
+
+enum Date {
+    case Parsed(NSDate)
+    case Unparsed(String)
+    
+    func format(formatter: NSDateFormatter) -> String {
+        switch self {
+        case let .Parsed(date):
+            return formatter.stringFromDate(date)
+        case let .Unparsed(value):
+            return value
+        }
+    }
 }

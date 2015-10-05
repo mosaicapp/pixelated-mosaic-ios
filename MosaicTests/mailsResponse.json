@@ -7,7 +7,7 @@
                 "cc": ["eve@dev.pixelated-project.org", "charly@dev.pixelated-project.org"],
                 "bcc": ["alice@dev.pixelated-project.org"],
                 "subject": "Hello",
-                "date": "2015-06-11T19:08:42.093039+00:00"
+                "date": "Mon, 5 Oct 2015 09:49:52 +0200"
             },
             "textPlainBody": "world",
             "mailbox": "inbox",

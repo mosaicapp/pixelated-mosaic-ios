@@ -17,26 +17,39 @@ class JsonParseServiceTestSpec: QuickSpec {
                     expect(res.stats.total) == 2
                     expect(res.mails.count) == 2
                     
-                    expect(res.mails[0].header.from) == "alice@dev.pixelated-project.org"
-                    expect(res.mails[0].header.to.count) == 1
-                    expect(res.mails[0].header.to).to(contain("bob@dev.pixelated-project.org"))
-                    expect(res.mails[0].header.cc!.count) == 2
-                    expect(res.mails[0].header.bcc!.count) == 1
-                    expect(res.mails[0].header.subject) == "Hello"
-                    expect(res.mails[0].header.date).notTo(beNil())
-                    expect(res.mails[0].textPlainBody) == "world"
-                    expect(res.mails[0].mailbox) == "inbox"
-                    expect(res.mails[0].ident) == "M-xxxa"
+                    var mail = res.mails[0]
+                    var header = mail.header
+                    expect(header.from) == "alice@dev.pixelated-project.org"
+                    expect(header.to.count) == 1
+                    expect(header.to).to(contain("bob@dev.pixelated-project.org"))
+                    expect(header.cc!.count) == 2
+                    expect(header.bcc!.count) == 1
+                    expect(header.subject) == "Hello"
+                    if case .Parsed(_) = header.date {
+                        // ok
+                    } else {
+                        XCTFail("date has not been parsed")
+                    }
+                    expect(mail.textPlainBody) == "world"
+                    expect(mail.mailbox) == "inbox"
+                    expect(mail.ident) == "M-xxxa"
                     
-                    expect(res.mails[1].header.from).to(beNil())
-                    expect(res.mails[1].header.to.count) == 1
-                    expect(res.mails[1].header.to).to(contain("alice@dev.pixelated-project.org"))
-                    expect(res.mails[1].header.cc).to(beNil())
-                    expect(res.mails[1].header.bcc).to(beNil())
-                    expect(res.mails[1].header.subject) == "Welcome"
-                    expect(res.mails[1].textPlainBody) == "First mail"
-                    expect(res.mails[1].mailbox) == "inbox"
-                    expect(res.mails[1].ident) == "M-xxxb"
+                    mail = res.mails[1]
+                    header = mail.header
+                    expect(header.from).to(beNil())
+                    expect(header.to.count) == 1
+                    expect(header.to).to(contain("alice@dev.pixelated-project.org"))
+                    expect(header.cc).to(beNil())
+                    expect(header.bcc).to(beNil())
+                    expect(header.subject) == "Welcome"
+                    if case .Parsed(_) = header.date {
+                        // ok
+                    } else {
+                        XCTFail("date has not been parsed")
+                    }
+                    expect(mail.textPlainBody) == "First mail"
+                    expect(mail.mailbox) == "inbox"
+                    expect(mail.ident) == "M-xxxb"
                 case let .Failure(msg):
                     XCTFail(msg)
                 }

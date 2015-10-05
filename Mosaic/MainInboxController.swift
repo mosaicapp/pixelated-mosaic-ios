@@ -87,7 +87,7 @@ extension MainInboxController: UITableViewDataSource {
             let mail = response.mails[indexPath.row]
             cell.from.text = mail.header.from
             cell.subject.text = mail.header.subject
-            cell.date.text = dateFormatter.stringFromDate(mail.header.date)
+            cell.date.text = mail.header.date.format(dateFormatter)
             cell.body.text = mail.textPlainBody
         }
         
