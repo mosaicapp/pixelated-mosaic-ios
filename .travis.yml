@@ -1,0 +1,9 @@
+language: ruby
+osx_image: xcode7
+language: objective-c
+xcode_project: Mosaic.xcodeproj
+xcode_scheme: MosaicTests
+
+script:
+- xcodebuild clean build test -project Mosaic.xcodeproj -scheme Mosaic
+
