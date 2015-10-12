@@ -1,20 +1,10 @@
-//
-//  AlertService.swift
-//  Mosaic
-//
-//  Created by Ben Hartmann on 27.08.15.
-//  Copyright © 2015 Pixelated. All rights reserved.
-//
-
 import UIKit
 import Foundation
-
 
 enum StandardError : String {
     case DataError
     case ConnectionError
 }
-
 
 class AlertService: NSObject {
 

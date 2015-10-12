@@ -1,11 +1,3 @@
-//
-//  DetailViewController.swift
-//  Mosaic
-//
-//  Created by Hennes Roemmer on 23.09.15.
-//  Copyright © 2015 Pixelated. All rights reserved.
-//
-
 import UIKit
 
 class DetailViewController: UIViewController {
