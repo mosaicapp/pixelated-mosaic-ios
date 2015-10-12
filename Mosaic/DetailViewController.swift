@@ -14,10 +14,10 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var mailContentTextView: UITextView!
     
     override func viewDidLoad() {
-        print("you selected the \(selectedMail!) mail")
         if let mail = selectedMail {
-            mailsService.fetchSingleMail(ident: mail.ident, delegate: self)
+            debugPrint("you selected the \(mail) mail")
             render(mail)
+            mailsService.fetchSingleMail(ident: mail.ident, delegate: self)
         }
     }
     
@@ -34,6 +34,11 @@ extension DetailViewController: FetchDelegate {
     
     func fetched(mail: Mail) {
         render(mail)
+    }
+    
+    func failure(message: String) {
+        debugPrint(message) // For debugging. TODO show the message to the user?
+        AlertService.showDataErrorAlert(self, message: "Couldn't load email. Please try again later")
     }
     
 }

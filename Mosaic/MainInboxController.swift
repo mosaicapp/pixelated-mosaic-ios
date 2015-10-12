@@ -30,24 +30,23 @@ class MainInboxController : UIViewController {
     }
     
     private func loadInbox() {
-        if Reachability.connectedToNetwork() {
-            self.mailsService.fetchInboxMails(page: 1, size: 25, delegate: self);
-        } else {
-            showAlert("Connection Error", message: "You are not connected to the internet")
+        guard Reachability.connectedToNetwork() else {
+            endRefreshing()
+            AlertService.showConnectionErrorAlert(self)
+            return
         }
-    }
-    
-    private func showAlert(title: String, message: String) {
-        if self.refreshControl.refreshing {
-            self.refreshControl.endRefreshing()
-        }
-        
-        let alert = AlertService.createDefaultAlert(title, message: message);
-        self.presentViewController(alert, animated: true, completion: nil)
+                
+        self.mailsService.fetchInboxMails(page: 1, size: 25, delegate: self);
     }
     
     func refresh(sender:AnyObject) {
         loadInbox()
+    }
+    
+    private func endRefreshing() {
+        if self.refreshControl.refreshing {
+            self.refreshControl.endRefreshing()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -100,18 +99,17 @@ extension MainInboxController: UITableViewDelegate {
 extension MainInboxController: FetchDelegate {
     
     func fetched(mails: Mails) {
+        endRefreshing()
+        
         self.mails = mails
         self.tableView.reloadData()
-        
-        if self.refreshControl.refreshing {
-            self.refreshControl.endRefreshing()
-        }
     }
     
     func failure(message: String) {
         debugPrint(message) // For debugging. TODO show the message to the user?
-        
-        showAlert("Data Error", message: "Couldn't load inbox emails. Please try again later")
+
+        endRefreshing()
+        AlertService.showDataErrorAlert(self, message: "Couldn't load inbox emails. Please try again later")
     }
     
 }

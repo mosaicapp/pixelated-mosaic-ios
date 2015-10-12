@@ -13,4 +13,14 @@ class AlertService {
         return alertController
     }
     
+    class func showConnectionErrorAlert(controller: UIViewController) -> Void {
+        let alert = createDefaultAlert("Connection Error", message: "You are not connected to the internet");
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    class func showDataErrorAlert(controller: UIViewController, message: String) -> Void {
+        let alert = createDefaultAlert("Data Error", message: message);
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
+    
 }
