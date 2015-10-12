@@ -3,5 +3,4 @@ language: objective-c
 xcode_project: Mosaic.xcodeproj
 xcode_scheme: Mosaic
 
-script:
-xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+script: xctool -project $TRAVIS_XCODE_PROJECT -scheme $TRAVIS_XCODE_SCHEME build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
