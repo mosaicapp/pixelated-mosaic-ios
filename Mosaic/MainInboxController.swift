@@ -9,9 +9,7 @@ class MainInboxController : UIViewController {
     let dateFormatter = NSDateFormatter()
     
     var mails : Mails?
-    var refreshControl:UIRefreshControl!
-    var isRefreshing: Bool = false
-    var mailRow: Int!
+    var refreshControl: UIRefreshControl!
     
     
     override func viewDidLoad() {
@@ -35,44 +33,35 @@ class MainInboxController : UIViewController {
         if Reachability.connectedToNetwork() {
             self.mailsService.fetchInboxMails(page: 1, size: 25, delegate: self);
         } else {
-            if self.isRefreshing {
-                self.refreshControl.endRefreshing()
-            }
-            
-            let alert = AlertService.createDefaultAlert("Connection Error", message: "")
-            if let alertToPresent = alert {
-                self.presentViewController(alertToPresent, animated: true, completion: { () -> Void in
-                    if self.isRefreshing {
-                        self.refreshControl.endRefreshing()
-                    }
-                })
-            }
+            showAlert("Connection Error", message: "You are not connected to the internet")
         }
     }
     
+    private func showAlert(title: String, message: String) {
+        if self.refreshControl.refreshing {
+            self.refreshControl.endRefreshing()
+        }
+        
+        let alert = AlertService.createDefaultAlert(title, message: message);
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
     func refresh(sender:AnyObject) {
-        isRefreshing = true
         loadInbox()
     }
     
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        mailRow = indexPath.row
-        print("zeile: \(mailRow)")
-    }
-    
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "DetailViewSegue" {
-            if let path = self.tableView.indexPathForSelectedRow {
-                if let mails = mails {
-                    let choosenMail = mails.mails[path.row]
-                    if let controller = segue.destinationViewController as? DetailViewController {
-                        controller.selectedMail = choosenMail
-                        controller.dateFormatter = self.dateFormatter
-                    }
-                }
+            guard
+                let controller = segue.destinationViewController as? DetailViewController,
+                let path = self.tableView.indexPathForSelectedRow,
+                let mails = mails
+            else {
+                return
             }
+
+            controller.selectedMail = mails.mails[path.row]
+            controller.dateFormatter = self.dateFormatter
         }
     }
     
@@ -101,6 +90,10 @@ extension MainInboxController: UITableViewDataSource {
 }
 
 extension MainInboxController: UITableViewDelegate {
+
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        print("zeile: \(indexPath.row)")
+//    }
     
 }
 
@@ -110,23 +103,15 @@ extension MainInboxController: FetchDelegate {
         self.mails = mails
         self.tableView.reloadData()
         
-        if self.isRefreshing {
+        if self.refreshControl.refreshing {
             self.refreshControl.endRefreshing()
         }
     }
     
     func failure(message: String) {
+        debugPrint(message) // For debugging. TODO show the message to the user?
         
-        print(message) // For debugging. TODO show the message to the user?
-        
-        let alert = AlertService.createDefaultAlert("Data Error", message: "Couldn't load inbox emails. Please try again later")
-        if let alertToPresent = alert {
-            self.presentViewController(alertToPresent, animated: true, completion: { () -> Void in
-                if self.isRefreshing {
-                    self.refreshControl.endRefreshing()
-                }
-            })
-        }
+        showAlert("Data Error", message: "Couldn't load inbox emails. Please try again later")
     }
     
 }

@@ -1,24 +1,14 @@
 import UIKit
 import Foundation
 
-enum StandardError : String {
-    case DataError
-    case ConnectionError
-}
+class AlertService {
 
-class AlertService: NSObject {
-
-    class func createDefaultAlert(title: String, message: String) -> UIAlertController? {
-        
-        if (title == "" || message == "") {
-            return nil
-        }
+    class func createDefaultAlert(title: String, message: String) -> UIAlertController {
         
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
-        let OKAction = UIAlertAction(title: NSLocalizedString("OK",comment:"AlertActionOK"), style: .Default) { (action) in
-        }
-        alertController.addAction(OKAction)
+        let okAction = UIAlertAction(title: NSLocalizedString("OK", comment:"AlertActionOK"), style: .Default, handler: nil)
+        alertController.addAction(okAction)
         
         return alertController
     }
