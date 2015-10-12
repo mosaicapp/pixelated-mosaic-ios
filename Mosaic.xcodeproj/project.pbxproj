@@ -78,7 +78,7 @@
 
 /* Begin PBXFileReference section */
 		253862C41B8F398C00FB6862 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		253862C81B8F3CD900FB6862 /* AlertService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertService.swift; path = ../AlertService.swift; sourceTree = "<group>"; };
+		253862C81B8F3CD900FB6862 /* AlertService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		344E516E1B69612E0080DB5D /* MainInboxController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInboxController.swift; sourceTree = "<group>"; };
 		344E51701B6966F30080DB5D /* InboxMailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InboxMailCell.swift; sourceTree = "<group>"; };
 		4DC782561B2A1AF4009290CD /* Mosaic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mosaic.app; sourceTree = BUILT_PRODUCTS_DIR; };
