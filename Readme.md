@@ -1,5 +1,7 @@
 # Mosaic Pixelated Client for iOS
 
+[![Build Status](https://travis-ci.org/mosaicapp/pixelated-mosaic-ios.svg?branch=master)](https://travis-ci.org/mosaicapp/pixelated-mosaic-ios)
+
 Mosaic is an iOS client for [Pixelated](https://www.pixelated-project.org), the encrypted Open-Source email client.
 
 ## Getting Started with Development
