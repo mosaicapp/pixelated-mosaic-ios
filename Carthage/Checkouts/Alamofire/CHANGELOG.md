@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 `Alamofire` adheres to [Semantic Versioning](http://semver.org/).
 
 #### 3.x Releases
-- `3.0.0` Betas - [3.0.0-beta.1](#300-beta1)
+- `3.1.x` Releases - [3.1.0](#310)
+- `3.0.x` Releases - [3.0.0](#300) | [3.0.1](#301)
+- `3.0.0` Betas - [3.0.0-beta.1](#300-beta1) | [3.0.0-beta.2](#300-beta2) | [3.0.0-beta.3](#300-beta3)
 
 #### 2.x Releases
 - `2.0.x` Releases - [2.0.0](#200) | [2.0.1](#201) | [2.0.2](#202)
@@ -17,8 +19,110 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [3.1.0](https://github.com/Alamofire/Alamofire/releases/tag/3.1.0)
+Released on 2015-10-22. All issues associated with this milestone can be found using this
+[filter](https://github.com/Alamofire/Alamofire/issues?utf8=✓&q=milestone%3A3.1.0).
+
+#### Added
+- New tvOS framework and test targets to the project.
+  - Added by [Bob Scarano](https://github.com/bscarano) in Pull Request
+  [#767](https://github.com/Alamofire/Alamofire/pull/767).
+- The tvOS deployment target to the podspec.
+  - Added by [Christian Noon](https://github.com/cnoon).
+- The `BITCODE_GENERATION_MODE` user defined setting to tvOS framework target.
+  - Added by [Christian Noon](https://github.com/cnoon).
+
+#### Updated
+- The README to include tvOS and bumped the required version of Xcode.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+- The default tvOS and watchOS deployment targets in the Xcode project.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+- The `APPLICATION_EXTENSION_API_ONLY` enabled flag to `YES` in the tvOS framework target.
+  - Updated by [James Barrow](https://github.com/Baza207) in Pull Request
+  [#771](https://github.com/Alamofire/Alamofire/pull/771).
+- The Travis-CI yaml file to run watchOS and tvOS builds and tests on xcode7.1 osx_image.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+
+---
+
+## [3.0.1](https://github.com/Alamofire/Alamofire/releases/tag/3.0.1)
+Released on 2015-10-19. All issues associated with this milestone can be found using this
+[filter](https://github.com/Alamofire/Alamofire/issues?utf8=✓&q=milestone%3A3.0.1).
+
+#### Added
+- Tests around content type validation with accept parameters.
+  - Added by [Christian Noon](https://github.com/cnoon).
+
+#### Fixed
+- Content type validation issue where parameter parsing on `;` was incorrect.
+  - Fixed by [Christian Noon](https://github.com/cnoon).
+
+## [3.0.0](https://github.com/Alamofire/Alamofire/releases/tag/3.0.0)
+Released on 2015-10-10. All issues associated with this milestone can be found using this
+[filter](https://github.com/Alamofire/Alamofire/issues?utf8=✓&q=milestone%3A3.0.0).
+
+#### Updated
+- `Downloading a File` code sample in the README to compile against Swift 2.0.
+  - Updated by [Screon](https://github.com/Screon) in Pull Request
+  [#827](https://github.com/Alamofire/Alamofire/pull/827).
+- Download code samples in the README to use `response` serializer.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+- CocoaPods and Carthage installation instructions for 3.0.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+- Carthage description and installation instructions in the README.
+  - Updated by [Ashton Williams](https://github.com/Ashton-W) in Pull Request
+  [#843](https://github.com/Alamofire/Alamofire/pull/843).
+- URL encoding internals to leverage the dictionary keys lazy evaluation.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+
+#### Fixed
+- Small typo in the Alamofire 3.0 Migration Guide `Response` section.
+  - Fixed by [neugartf](https://github.com/neugartf) in Pull Request
+  [#826](https://github.com/Alamofire/Alamofire/pull/826).
+- User defined `BITCODE_GENERATION_MODE` setting for Carthage builds.
+  - Fixed by [Christian Noon](https://github.com/cnoon) in regards to Issue
+  [#835](https://github.com/Alamofire/Alamofire/issues/835).
+
+---
+
+## [3.0.0-beta.3](https://github.com/Alamofire/Alamofire/releases/tag/3.0.0-beta.3)
+Released on 2015-09-27. All issues associated with this milestone can be found using this
+[filter](https://github.com/Alamofire/Alamofire/issues?utf8=✓&q=milestone%3A3.0.0-beta.3).
+
+#### Updated
+- The `Response` initializer to have a `public` ACL instead of `internal`.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+
+## [3.0.0-beta.2](https://github.com/Alamofire/Alamofire/releases/tag/3.0.0-beta.2)
+Released on 2015-09-26. All issues associated with this milestone can be found using this
+[filter](https://github.com/Alamofire/Alamofire/issues?utf8=✓&q=milestone%3A3.0.0-beta.2).
+
+#### Added
+- Tests around the header behavior for redirected requests.
+  - Added by [Christian Noon](https://github.com/cnoon) in regards to Issue
+  [#798](https://github.com/Alamofire/Alamofire/issues/798).
+- A migration guide for Alamofire 3.0 documenting all API changes.
+  - Added by [Christian Noon](https://github.com/cnoon).
+
+#### Updated
+- `Response` initializer to have `internal` ACL.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+- All sample code in the README to conform to the Alamofire 3.0 APIs.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+- URL percent escaping to only batch on OS's where required improving
+overall performance.
+  - Updated by [Christian Noon](https://github.com/cnoon).
+- Basic auth example in the README to compile on Swift 2.0.
+  - Updated by [David F. Muir V](https://github.com/dfmuir) in Pull Request
+  [#810](https://github.com/Alamofire/Alamofire/issues/810).
+
+#### Fixed
+- Compiler errors in the playground due to the new response serializer APIs.
+  - Fixed by [Christian Noon](https://github.com/cnoon).
+
 ## [3.0.0-beta.1](https://github.com/Alamofire/Alamofire/releases/tag/3.0.0-beta.1)
-Released on 2015-09-21.
+Released on 2015-09-21. All issues associated with this milestone can be found using this
+[filter](https://github.com/Alamofire/Alamofire/issues?utf8=✓&q=milestone%3A3.0.0-beta.1).
 
 #### Added
 - A new `Response` struct to simplify response serialization.
